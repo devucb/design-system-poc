@@ -1,0 +1,19 @@
+---
+description: Keep Figma design-to-code work locked to the DS base components.
+alwaysApply: true
+---
+
+# Design-system conformance
+
+When the user shares a Figma URL, screen, or asks to implement/build a design,
+map instances 1:1 to the catalog components, importing each from its source file
+(`@components/Button/Button`, `@components/Card/Card`, …) since the project has
+no barrel files. Do not invent styles, hex colors, or extra RN `style` props.
+
+Catalog (Figma Components page): Text, Button, Card, Section, Container.
+
+Device chrome (status bar, home indicator) is allowed on phone frames. It is not a product component.
+
+Layout frames / groups / slots are fine around instances. Raw TEXT, RECTANGLE, VECTOR, or instances of any other component mean the design is off-catalog: say so and ask before implementing.
+
+Never draw a custom control to "match" a non-DS frame. Never silently restyle a DS component to approximate a one-off design.

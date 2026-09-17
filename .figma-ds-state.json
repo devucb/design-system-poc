@@ -1,0 +1,26 @@
+{
+  "runId": "ds-green-move-2026-08-28",
+  "phase": "phase4",
+  "fileKey": "wgT2dVwUDdO3S6KMAuL6A3",
+  "fileUrl": "https://www.figma.com/design/wgT2dVwUDdO3S6KMAuL6A3/DS-Green",
+  "team": "Utku Balkır Pro",
+  "pages": {
+    "Cover": "0:1",
+    "Foundations": "2:2",
+    "Components": "2:4",
+    "Screens": "2:6"
+  },
+  "collections": {
+    "Colors": "VariableCollectionId:2:7",
+    "Spacing": "VariableCollectionId:3:2",
+    "Radius": "VariableCollectionId:3:3"
+  },
+  "components": {
+    "Text": "7:14",
+    "Button": "9:11",
+    "Card": "9:13",
+    "Section": "9:16",
+    "Container": "9:19"
+  },
+  "screen": "11:2"
+}
