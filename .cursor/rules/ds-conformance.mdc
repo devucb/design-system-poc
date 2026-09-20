@@ -7,10 +7,10 @@ alwaysApply: true
 
 When the user shares a Figma URL, screen, or asks to implement/build a design,
 map instances 1:1 to the catalog components, importing each from its source file
-(`@components/Button/Button`, `@components/Card/Card`, …) since the project has
+(`@ds/ui/Button/Button`, `@ds/ui/Card/Card`, …) since the project has
 no barrel files. Do not invent styles, hex colors, or extra RN `style` props.
 
-Catalog (Figma Components page): Text, Button, Card, Section, Container.
+Catalog (Figma Components page): Text, Button, Card, Section, Container, Icon.
 
 Device chrome (status bar, home indicator) is allowed on phone frames. It is not a product component.
 

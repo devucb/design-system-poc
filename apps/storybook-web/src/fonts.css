@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'Inter-Medium';
+  src: url('/fonts/Inter_500Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter-SemiBold';
+  src: url('/fonts/Inter_600SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter-Bold';
+  src: url('/fonts/Inter_700Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+html,
+body,
+#storybook-root {
+  height: 100%;
+  margin: 0;
+}
+
+#storybook-root,
+#storybook-root > div {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100%;
+  width: 100%;
+}

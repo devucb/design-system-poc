@@ -1,0 +1,9 @@
+{
+  "json.schemaDownload.enable": true,
+  "json.schemas": [
+    {
+      "fileMatch": ["tsconfig.json", "tsconfig.*.json", "tsconfig-*.json"],
+      "url": "./tsconfig.schema.json"
+    }
+  ]
+}

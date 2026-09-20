@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Section DefaultGap matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "stretch",
+        "flexDirection": "column",
+        "gap": 12,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#13241C",
+          "fontFamily": "Inter-SemiBold",
+          "fontSize": 12,
+          "lineHeight": 16,
+        }
+      }
+      suppressHighlighting={true}
+    >
+      First row
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#13241C",
+          "fontFamily": "Inter-Medium",
+          "fontSize": 12,
+          "lineHeight": 16,
+        }
+      }
+      suppressHighlighting={true}
+    >
+      Second row
+    </Text>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`Section WithSpacer matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "stretch",
+        "flexDirection": "column",
+        "gap": 0,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#13241C",
+          "fontFamily": "Inter-Medium",
+          "fontSize": 12,
+          "lineHeight": 16,
+        }
+      }
+      suppressHighlighting={true}
+    >
+      No gap
+    </Text>
+    <View
+      style={
+        {
+          "height": 24,
+        }
+      }
+    />
+    <Text
+      style={
+        {
+          "color": "#13241C",
+          "fontFamily": "Inter-Medium",
+          "fontSize": 12,
+          "lineHeight": 16,
+        }
+      }
+      suppressHighlighting={true}
+    >
+      After spacer
+    </Text>
+  </View>
+</RNCSafeAreaProvider>
+`;

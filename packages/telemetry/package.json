@@ -1,0 +1,28 @@
+{
+  "name": "@ds/telemetry",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@sentry/react": "*",
+    "@sentry/react-native": "*",
+    "react": "*"
+  },
+  "peerDependenciesMeta": {
+    "@sentry/react": {
+      "optional": true
+    },
+    "@sentry/react-native": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@sentry/react": "^10.71.0",
+    "@sentry/react-native": "8.24.0",
+    "@types/react": "19.2.0",
+    "react": "19.2.3",
+    "typescript": "5.8.3"
+  }
+}

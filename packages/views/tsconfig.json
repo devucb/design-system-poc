@@ -1,0 +1,16 @@
+{
+  "$schema": "../../.vscode/tsconfig.schema.json",
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "types": ["react", "react-native"],
+    "baseUrl": "../..",
+    "paths": {
+      "@ds/ui/*": ["packages/ui/src/*"],
+      "@ds/theme/*": ["packages/theme/src/*"],
+      "@ds/i18n/*": ["packages/i18n/src/*"]
+    }
+  },
+  "include": ["src", "../i18n/src/i18next.d.ts"]
+}

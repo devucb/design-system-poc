@@ -1,0 +1,29 @@
+{
+  "$schema": "../../.vscode/tsconfig.schema.json",
+  "extends": "@react-native/typescript-config",
+  "compilerOptions": {
+    "strict": true,
+    "types": ["jest"],
+    "baseUrl": ".",
+    "moduleSuffixes": [".ios", ".android", ".native", ""],
+    "paths": {
+      "@navigation/*": ["src/navigation/*"],
+      "@ds/ui/*": ["../../packages/ui/src/*"],
+      "@ds/theme/*": ["../../packages/theme/src/*"],
+      "@ds/i18n/*": ["../../packages/i18n/src/*"],
+      "@ds/navigation/*": ["../../packages/navigation/src/*"],
+      "@ds/session/*": ["../../packages/session/src/*"],
+      "@ds/storage/*": ["../../packages/storage/src/*"],
+      "@ds/telemetry/*": ["../../packages/telemetry/src/*"],
+      "@ds/views/*": ["../../packages/views/src/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx", "../../packages/i18n/src/i18next.d.ts"],
+  "exclude": [
+    "**/node_modules",
+    "**/Pods",
+    ".rn-template",
+    "**/*.web.ts",
+    "**/*.web.tsx"
+  ]
+}

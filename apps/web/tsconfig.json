@@ -1,0 +1,48 @@
+{
+  "$schema": "../../.vscode/tsconfig.schema.json",
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "types": ["vite/client"],
+    "lib": ["ESNext", "DOM"],
+    "baseUrl": ".",
+    "moduleSuffixes": [".web", ""],
+    "paths": {
+      "@ds/ui/*": ["../../packages/ui/src/*"],
+      "@ds/theme/*": ["../../packages/theme/src/*"],
+      "@ds/i18n/*": ["../../packages/i18n/src/*"],
+      "@ds/navigation/*": ["../../packages/navigation/src/*"],
+      "@ds/session/*": ["../../packages/session/src/*"],
+      "@ds/storage/*": ["../../packages/storage/src/*"],
+      "@ds/telemetry/*": ["../../packages/telemetry/src/*"],
+      "@ds/views/*": ["../../packages/views/src/*"]
+    }
+  },
+  "include": [
+    "src",
+    "vite.config.ts",
+    "../../packages/ui/src/**/*.ts",
+    "../../packages/ui/src/**/*.tsx",
+    "../../packages/theme/src/**/*.ts",
+    "../../packages/theme/src/**/*.tsx",
+    "../../packages/i18n/src/**/*.ts",
+    "../../packages/i18n/src/**/*.tsx",
+    "../../packages/navigation/src/**/*.ts",
+    "../../packages/navigation/src/**/*.tsx",
+    "../../packages/session/src/**/*.ts",
+    "../../packages/session/src/**/*.tsx",
+    "../../packages/storage/src/**/*.ts",
+    "../../packages/telemetry/src/**/*.ts",
+    "../../packages/telemetry/src/**/*.tsx",
+    "../../packages/views/src/**/*.ts",
+    "../../packages/views/src/**/*.tsx"
+  ],
+  "exclude": [
+    "../../packages/ui/src/**/*.test.ts",
+    "../../packages/ui/src/**/*.test.tsx",
+    "../../packages/ui/src/**/*.stories.ts",
+    "../../packages/ui/src/**/*.stories.tsx",
+    "../../packages/telemetry/src/telemetry.tsx"
+  ]
+}

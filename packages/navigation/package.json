@@ -1,0 +1,40 @@
+{
+  "name": "@ds/navigation",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@ds/session": "*",
+    "@ds/telemetry": "*",
+    "@ds/theme": "*",
+    "@ds/ui": "*",
+    "@ds/views": "*",
+    "@react-navigation/bottom-tabs": "*",
+    "@react-navigation/elements": "*",
+    "@react-navigation/native": "*",
+    "@react-navigation/native-stack": "*",
+    "react": "*",
+    "react-i18next": "*",
+    "react-native": "*",
+    "tamagui": "*"
+  },
+  "devDependencies": {
+    "@ds/session": "*",
+    "@ds/telemetry": "*",
+    "@ds/theme": "*",
+    "@ds/ui": "*",
+    "@ds/views": "*",
+    "@react-navigation/bottom-tabs": "7.18.18",
+    "@react-navigation/elements": "2.9.40",
+    "@react-navigation/native": "7.3.18",
+    "@react-navigation/native-stack": "7.18.10",
+    "@types/react": "19.2.0",
+    "react": "19.2.3",
+    "react-i18next": "17.0.12",
+    "react-native": "0.86.3",
+    "tamagui": "1.144.4",
+    "typescript": "5.8.3"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@ds/storage",
+  "version": "0.0.1",
+  "private": true,
+  "exports": {
+    "./keys": "./src/keys.ts",
+    "./mmkv": "./src/mmkv.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react-native-mmkv": "*"
+  },
+  "devDependencies": {
+    "react-native-mmkv": "4.3.2",
+    "typescript": "5.8.3"
+  }
+}

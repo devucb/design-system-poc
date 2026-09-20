@@ -1,0 +1,32 @@
+name: Chromatic
+
+on:
+  push:
+    paths:
+      - 'packages/ui/**'
+      - 'packages/theme/**'
+      - 'apps/storybook-web/**'
+      - 'package-lock.json'
+      - '.github/workflows/chromatic.yml'
+
+jobs:
+  chromatic:
+    name: Visual tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          workingDir: apps/storybook-web
+          buildScriptName: build
+          onlyChanged: true
+          zip: true
+          autoAcceptChanges: main

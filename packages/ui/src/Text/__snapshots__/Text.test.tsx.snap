@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Text Heading matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      {
+        "color": "#13241C",
+        "fontFamily": "Inter-Bold",
+        "fontSize": 16,
+        "lineHeight": 24,
+      }
+    }
+    suppressHighlighting={true}
+  >
+    The quick brown fox
+  </Text>
+</RNCSafeAreaProvider>
+`;
+
+exports[`Text HeadingSecondary matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      {
+        "color": "#5C7268",
+        "fontFamily": "Inter-Bold",
+        "fontSize": 16,
+        "lineHeight": 24,
+      }
+    }
+    suppressHighlighting={true}
+  >
+    The quick brown fox
+  </Text>
+</RNCSafeAreaProvider>
+`;
+
+exports[`Text Medium matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      {
+        "color": "#5C7268",
+        "fontFamily": "Inter-Medium",
+        "fontSize": 12,
+        "lineHeight": 16,
+        "textAlign": "center",
+      }
+    }
+    suppressHighlighting={true}
+  >
+    The quick brown fox
+  </Text>
+</RNCSafeAreaProvider>
+`;
+
+exports[`Text SemiBold matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      {
+        "color": "#13241C",
+        "fontFamily": "Inter-SemiBold",
+        "fontSize": 12,
+        "lineHeight": 16,
+      }
+    }
+    suppressHighlighting={true}
+  >
+    The quick brown fox
+  </Text>
+</RNCSafeAreaProvider>
+`;

@@ -1,12 +1,17 @@
-# React Native 0.86 (Community CLI)
+# React Native 0.86 (Community CLI) + Nx + Tamagui + RN Web
 
-This is a Community CLI app, not Expo. Do not add Expo modules, `expo` config, or `docs.expo.dev` guidance.
+This is an **Nx npm-workspaces monorepo**, not Expo. Do not add Expo modules, `expo` config, Expo Router, Solito, or `docs.expo.dev` guidance.
 
 Read the versioned docs at https://reactnative.dev/docs/0.86/getting-started before writing Metro, native, or Jest config.
 
-- Entry: `index.js` → `App.tsx`. Scripts: `react-native start` / `run-ios` / `run-android`.
-- No barrel files. Import from the source (`@components/Button/Button`, …).
-- Catalog: Text, Button, Card, Section, Container. Do not invent hex colors or extra RN `style` on those.
-- React Compiler is on (`babel-plugin-react-compiler`, target 19). Skip `useMemo` / `useCallback` unless profiling shows a bail-out.
-- Fonts are native assets under `assets/fonts/` (linked with `react-native-asset`). After a clean clone: `npx react-native-asset` then `cd ios && bundle exec pod install`.
-- Storybook is on-device (`npm run storybook` / `storybook:ios`). Jest reuses stories via `composeStories` — Storybook itself is not the test runner.
+- Apps: `apps/native` (Community CLI Metro, iOS, Android), `apps/web` (Vite + `react-native-web`, port 4200), `apps/storybook` (on-device Storybook), and `apps/storybook-web` (Vite catalog Storybook, port 6006).
+- Packages: `packages/theme` (Tamagui tokens / `TamaguiRoot`), `packages/ui` (catalog), `packages/i18n` (en/tr + language store), `packages/navigation` (route names / ref / headers), `packages/session` (auth + splash Zustand stores), `packages/storage` (MMKV / web `localStorage`), `packages/telemetry` (Sentry facade), `packages/views` (screen contents). Native modules live in `apps/native` and `apps/storybook`. Sentry stays in `apps/native`.
+- Entry: `apps/native/index.js` → `App.tsx`. Storybook: `apps/storybook/index.js` → `App.tsx`. Web Storybook: `apps/storybook-web/.storybook`. Web: `apps/web/src/main.tsx` → `App.tsx`. Each product app owns only its `RootNavigator` (web chrome in `apps/web/src/shell`). Shared navigation lives in `packages/navigation/src` as `config/` (`screenDefinitions`, enums, types), `stacks/`, `screens/`, and `chrome/` (headers, ref, theme). Add a screen in `config/screenDefinitions` and map it — do not hand-write another `<Stack.Screen>`. Screen contents live in `packages/views`. Web-only route: `platforms: ['web']`. Same route, different UI: `Foo.web.tsx` next to the view. Scripts: `npm run ios` / `android` / `start` / `web` / `storybook:ios` / `storybook:web` (`nx run native:*` / `web:serve` / `storybook:*` / `storybook-web:serve`).
+- No barrel files. Import from the source (`@ds/ui/Button/Button`, `@ds/theme/TamaguiRoot`, …).
+- App session, splash, language, and theme preference are Zustand stores, not React Context. Tamagui still needs `TamaguiRoot`. Language store lives in `packages/i18n`.
+- Catalog: Text, Button, Card, Section, Container, Icon. Do not invent hex colors or extra RN `style` on those. Tokens come from Tamagui, not Restyle.
+- React Compiler is on for native (`babel-plugin-react-compiler`, target 19). Skip `useMemo` / `useCallback` unless profiling shows a bail-out. Tamagui compiler is **web-only** via `@tamagui/vite-plugin`. Do not add `@tamagui/babel-plugin` on native unless asked.
+- Fonts are native assets under `apps/native/assets/fonts/` and `apps/storybook/assets/fonts/` (linked with `react-native-asset`). After a clean clone: `npx react-native-asset` from each native app, then `cd ios && bundle exec pod install`. Web fonts live in `apps/web/public/fonts` (also served by `apps/storybook-web`). Catalog icons are hand-drawn SVGs (`@ds/ui/Icon/Icon`), not Ionicons.
+- On-device Storybook is `apps/storybook` (`npm run storybook` / `storybook:ios`). Web catalog Storybook is `apps/storybook-web` (`npm run storybook:web`, port 6006). Both reuse `packages/ui` CSF stories. Jest in `apps/native` reuses those stories via `composeStories`. Web-only Storybook tests: Vitest + Playwright (`npm run test:storybook`), `@storybook/addon-a11y`, coverage, Chromatic visual tests (`@chromatic-com/storybook`). `@storybook/addon-vitest` and a11y have no on-device support (`unsupportedFrameworks: react-native`). Chromatic snapshots are web/cloud only — they do not run in on-device Storybook. CI: `.github/workflows/chromatic.yml` with secret `CHROMATIC_PROJECT_TOKEN`. Product `apps/web` is not Storybook.
+- Pin exact versions of `react`, `react-native`, `react-native-reanimated`, and `tamagui` via root npm `overrides`.
+- RN performance / UI patterns follow Vercel [react-native-skills](https://github.com/vercel-labs/agent-skills/tree/main/skills/react-native-skills) in `.cursor/skills/react-native-skills/`. Read `PROJECT.md` there first; Expo-only rules are remapped.

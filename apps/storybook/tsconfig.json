@@ -1,0 +1,23 @@
+{
+  "$schema": "../../.vscode/tsconfig.schema.json",
+  "extends": "@react-native/typescript-config",
+  "compilerOptions": {
+    "strict": true,
+    "baseUrl": ".",
+    "moduleSuffixes": [".ios", ".android", ".native", ""],
+    "paths": {
+      "@ds/ui/*": ["../../packages/ui/src/*"],
+      "@ds/theme/*": ["../../packages/theme/src/*"],
+      "@ds/i18n/*": ["../../packages/i18n/src/*"],
+      "@ds/storage/*": ["../../packages/storage/src/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx", "../../packages/i18n/src/i18next.d.ts"],
+  "exclude": [
+    "**/node_modules",
+    "**/Pods",
+    ".rnstorybook/storybook.requires.ts",
+    "**/*.web.ts",
+    "**/*.web.tsx"
+  ]
+}

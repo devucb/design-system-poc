@@ -1,0 +1,24 @@
+{
+  "name": "@ds/theme",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@ds/storage": "*",
+    "react": "*",
+    "react-native": "*",
+    "tamagui": "*",
+    "zustand": "*"
+  },
+  "devDependencies": {
+    "@ds/storage": "*",
+    "@types/react": "19.2.0",
+    "react": "19.2.3",
+    "react-native": "0.86.3",
+    "tamagui": "1.144.4",
+    "typescript": "5.8.3",
+    "zustand": "5.0.15"
+  }
+}
