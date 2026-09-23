@@ -1,12 +1,20 @@
 name: Chromatic
 
 on:
-  push:
+  pull_request:
     paths:
       - 'packages/ui/**'
       - 'packages/theme/**'
+      - 'apps/storybook/src/**'
       - 'apps/storybook-web/**'
-      - 'package-lock.json'
+      - '.github/workflows/chromatic.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'packages/ui/**'
+      - 'packages/theme/**'
+      - 'apps/storybook/src/**'
+      - 'apps/storybook-web/**'
       - '.github/workflows/chromatic.yml'
 
 jobs:
