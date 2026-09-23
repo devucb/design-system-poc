@@ -69,6 +69,7 @@
     "zustand": "5.0.15",
     "@sentry/core": "10.71.0",
     "@sentry/browser": "10.71.0",
-    "@sentry/react": "10.71.0"
+    "@sentry/react": "10.71.0",
+    "conventional-changelog-writer": "9.2.1"
   }
 }
