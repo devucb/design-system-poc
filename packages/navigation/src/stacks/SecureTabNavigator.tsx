@@ -1,8 +1,8 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useTheme } from 'tamagui';
-import { useTranslation } from 'react-i18next';
-import { FontFamily } from '@ds/theme/fonts';
-import { Icon } from '@ds/ui/Icon/Icon';
+import { useTranslation } from '@ds/language';
+import { FontFamily } from '@ds/theme';
+import { Icon } from '@ds/ui';
 import { TabNavigationHeader } from '../chrome/NavigationHeader';
 import { appPlatform } from '../config/platform';
 import { tabScreensOnPlatform } from '../config/screenDefinitions';
@@ -55,6 +55,7 @@ export function SecureTabNavigator() {
               height: 0,
               overflow: 'hidden',
               borderTopWidth: 0,
+              paddingHorizontal: 24,
             }
           : {
               backgroundColor: theme.backgroundBase!.val,

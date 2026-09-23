@@ -1,12 +1,6 @@
-import { useTranslation } from 'react-i18next';
-import { AppLanguage } from '@ds/i18n/languages';
-import { setLanguage, useAppLanguage } from '@ds/i18n/languageStore';
-import { setPreference, useThemePreference } from '@ds/theme/themePreference';
-import { ThemePreference } from '@ds/theme/preferences';
-import { Button } from '@ds/ui/Button/Button';
-import { Container } from '@ds/ui/Container/Container';
-import { Section } from '@ds/ui/Section/Section';
-import { Text } from '@ds/ui/Text/Text';
+import { useTranslation, AppLanguage, setLanguage, useAppLanguage } from '@ds/language';
+import { setPreference, useThemePreference, ThemePreference } from '@ds/theme';
+import { Button, Container, Section, Text } from '@ds/ui';
 
 export function Profile({
   onSignOut,

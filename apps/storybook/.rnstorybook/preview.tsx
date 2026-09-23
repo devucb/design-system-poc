@@ -2,11 +2,9 @@ import { type ReactNode } from 'react';
 import { StyleSheet } from 'react-native';
 import type { Preview } from '@storybook/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { hydrateLanguage } from '@ds/i18n/languageStore';
-import type { ColorScheme } from '@ds/theme/preferences';
-import { hydrateThemePreference } from '@ds/theme/themePreference';
-import { TamaguiRoot } from '@ds/theme/TamaguiRoot';
-import { Box } from '@ds/ui/Box/Box';
+import { hydrateLanguage } from '@ds/language';
+import { hydrateThemePreference, TamaguiRoot, type ColorScheme } from '@ds/theme';
+import { Box, SheetProvider } from '@ds/ui';
 
 hydrateThemePreference();
 hydrateLanguage();
@@ -29,13 +27,15 @@ function StoryProviders({
   return (
     <SafeAreaProvider initialMetrics={initialMetrics} style={styles.root}>
       <TamaguiRoot scheme={isTest ? undefined : scheme}>
-        {isTest ? (
-          children
-        ) : (
-          <Box flex={1} backgroundColor="$backgroundBase">
-            {children}
-          </Box>
-        )}
+        <SheetProvider>
+          {isTest ? (
+            children
+          ) : (
+            <Box flex={1} backgroundColor="$backgroundBase">
+              {children}
+            </Box>
+          )}
+        </SheetProvider>
       </TamaguiRoot>
     </SafeAreaProvider>
   );

@@ -1,0 +1,160 @@
+name: Release and staging
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      skip_ios:
+        description: Skip the iOS staging job
+        type: boolean
+        default: false
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: ${{ github.event_name != 'push' || !startsWith(github.event.head_commit.message, 'chore(release)') }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      # semantic-release 25: node ^22.14.0 || >= 24.10.0
+      # changelog and git plugins: node ^22.22.2 || >= 24.15
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.22
+          cache: npm
+
+      - run: npm ci
+
+      - run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+
+  staging-android:
+    needs: release
+    if: needs.release.result == 'success'
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.22
+          cache: npm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          working-directory: apps/mobile
+          bundler-cache: true
+
+      - run: npm ci
+
+      - name: Write public staging env
+        run: |
+          cat > apps/mobile/.env.staging << 'EOF'
+          GRAPHQL_URL=${{ vars.GRAPHQL_URL }}
+          SENTRY_DSN=${{ vars.SENTRY_DSN }}
+          SENTRY_TRACES_SAMPLE_RATE=${{ vars.SENTRY_TRACES_SAMPLE_RATE }}
+          EOF
+
+      - name: Decode Firebase service account
+        run: printf '%s' "${{ secrets.FIREBASE_SA_JSON_BASE64 }}" | base64 --decode > "$RUNNER_TEMP/firebase-sa.json"
+
+      - name: Decode release keystore
+        run: printf '%s' "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > apps/mobile/android/app/release.keystore
+
+      - name: Build number
+        id: build
+        run: echo "number=$(git rev-list --count HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Android staging
+        working-directory: apps/mobile
+        env:
+          ENVFILE: .env.staging
+          BUILD_NUMBER: ${{ steps.build.outputs.number }}
+          FIREBASE_SA_FILE: ${{ runner.temp }}/firebase-sa.json
+          FIREBASE_ANDROID_APP_ID: ${{ vars.FIREBASE_ANDROID_APP_ID }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: bundle exec fastlane android staging
+
+  staging-ios:
+    needs: release
+    if: needs.release.result == 'success' && github.event.inputs.skip_ios != 'true'
+    runs-on: macos-latest
+    environment: staging
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.22
+          cache: npm
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          working-directory: apps/mobile
+          bundler-cache: true
+
+      - run: npm ci
+
+      - name: Write public staging env
+        run: |
+          cat > apps/mobile/.env.staging << 'EOF'
+          GRAPHQL_URL=${{ vars.GRAPHQL_URL }}
+          SENTRY_DSN=${{ vars.SENTRY_DSN }}
+          SENTRY_TRACES_SAMPLE_RATE=${{ vars.SENTRY_TRACES_SAMPLE_RATE }}
+          EOF
+
+      - name: Decode Firebase service account
+        run: printf '%s' "${{ secrets.FIREBASE_SA_JSON_BASE64 }}" | base64 --decode > "$RUNNER_TEMP/firebase-sa.json"
+
+      - name: Install pods
+        working-directory: apps/mobile/ios
+        run: bundle exec pod install
+
+      - name: Build number
+        id: build
+        run: echo "number=$(git rev-list --count HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: iOS staging
+        working-directory: apps/mobile
+        env:
+          ENVFILE: .env.staging
+          BUILD_NUMBER: ${{ steps.build.outputs.number }}
+          FIREBASE_SA_FILE: ${{ runner.temp }}/firebase-sa.json
+          FIREBASE_IOS_APP_ID: ${{ vars.FIREBASE_IOS_APP_ID }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          MATCH_GIT_URL: ${{ secrets.MATCH_GIT_URL }}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+        run: bundle exec fastlane ios staging

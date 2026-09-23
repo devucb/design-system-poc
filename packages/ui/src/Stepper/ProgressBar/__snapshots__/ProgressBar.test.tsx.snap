@@ -1,0 +1,375 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProgressBar Complete matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <View
+    accessibilityRole="progressbar"
+    accessibilityValue={
+      {
+        "max": 4,
+        "min": 0,
+        "now": 4,
+      }
+    }
+    style={
+      {
+        "alignSelf": "stretch",
+        "flexDirection": "row",
+        "gap": 8,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "backgroundColor": "#1F7A4C",
+          "borderBottomLeftRadius": 8,
+          "borderBottomRightRadius": 8,
+          "borderTopLeftRadius": 8,
+          "borderTopRightRadius": 8,
+          "flex": 1,
+          "height": 8,
+        }
+      }
+    />
+    <View
+      style={
+        {
+          "backgroundColor": "#1F7A4C",
+          "borderBottomLeftRadius": 8,
+          "borderBottomRightRadius": 8,
+          "borderTopLeftRadius": 8,
+          "borderTopRightRadius": 8,
+          "flex": 1,
+          "height": 8,
+        }
+      }
+    />
+    <View
+      style={
+        {
+          "backgroundColor": "#1F7A4C",
+          "borderBottomLeftRadius": 8,
+          "borderBottomRightRadius": 8,
+          "borderTopLeftRadius": 8,
+          "borderTopRightRadius": 8,
+          "flex": 1,
+          "height": 8,
+        }
+      }
+    />
+    <View
+      style={
+        {
+          "backgroundColor": "#1F7A4C",
+          "borderBottomLeftRadius": 8,
+          "borderBottomRightRadius": 8,
+          "borderTopLeftRadius": 8,
+          "borderTopRightRadius": 8,
+          "flex": 1,
+          "height": 8,
+        }
+      }
+    />
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`ProgressBar Mid matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <View
+    accessibilityRole="progressbar"
+    accessibilityValue={
+      {
+        "max": 4,
+        "min": 0,
+        "now": 2,
+      }
+    }
+    style={
+      {
+        "alignSelf": "stretch",
+        "flexDirection": "row",
+        "gap": 8,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "backgroundColor": "#1F7A4C",
+          "borderBottomLeftRadius": 8,
+          "borderBottomRightRadius": 8,
+          "borderTopLeftRadius": 8,
+          "borderTopRightRadius": 8,
+          "flex": 1,
+          "height": 8,
+        }
+      }
+    />
+    <View
+      style={
+        {
+          "backgroundColor": "#1F7A4C",
+          "borderBottomLeftRadius": 8,
+          "borderBottomRightRadius": 8,
+          "borderTopLeftRadius": 8,
+          "borderTopRightRadius": 8,
+          "flex": 1,
+          "height": 8,
+        }
+      }
+    />
+    <View
+      style={
+        {
+          "backgroundColor": "#D7E6DC",
+          "borderBottomLeftRadius": 8,
+          "borderBottomRightRadius": 8,
+          "borderTopLeftRadius": 8,
+          "borderTopRightRadius": 8,
+          "flex": 1,
+          "height": 8,
+        }
+      }
+    />
+    <View
+      style={
+        {
+          "backgroundColor": "#D7E6DC",
+          "borderBottomLeftRadius": 8,
+          "borderBottomRightRadius": 8,
+          "borderTopLeftRadius": 8,
+          "borderTopRightRadius": 8,
+          "flex": 1,
+          "height": 8,
+        }
+      }
+    />
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`ProgressBar SixSteps matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <View
+    accessibilityRole="progressbar"
+    accessibilityValue={
+      {
+        "max": 6,
+        "min": 0,
+        "now": 3,
+      }
+    }
+    style={
+      {
+        "alignSelf": "stretch",
+        "flexDirection": "row",
+        "gap": 8,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "backgroundColor": "#1F7A4C",
+          "borderBottomLeftRadius": 8,
+          "borderBottomRightRadius": 8,
+          "borderTopLeftRadius": 8,
+          "borderTopRightRadius": 8,
+          "flex": 1,
+          "height": 8,
+        }
+      }
+    />
+    <View
+      style={
+        {
+          "backgroundColor": "#1F7A4C",
+          "borderBottomLeftRadius": 8,
+          "borderBottomRightRadius": 8,
+          "borderTopLeftRadius": 8,
+          "borderTopRightRadius": 8,
+          "flex": 1,
+          "height": 8,
+        }
+      }
+    />
+    <View
+      style={
+        {
+          "backgroundColor": "#1F7A4C",
+          "borderBottomLeftRadius": 8,
+          "borderBottomRightRadius": 8,
+          "borderTopLeftRadius": 8,
+          "borderTopRightRadius": 8,
+          "flex": 1,
+          "height": 8,
+        }
+      }
+    />
+    <View
+      style={
+        {
+          "backgroundColor": "#D7E6DC",
+          "borderBottomLeftRadius": 8,
+          "borderBottomRightRadius": 8,
+          "borderTopLeftRadius": 8,
+          "borderTopRightRadius": 8,
+          "flex": 1,
+          "height": 8,
+        }
+      }
+    />
+    <View
+      style={
+        {
+          "backgroundColor": "#D7E6DC",
+          "borderBottomLeftRadius": 8,
+          "borderBottomRightRadius": 8,
+          "borderTopLeftRadius": 8,
+          "borderTopRightRadius": 8,
+          "flex": 1,
+          "height": 8,
+        }
+      }
+    />
+    <View
+      style={
+        {
+          "backgroundColor": "#D7E6DC",
+          "borderBottomLeftRadius": 8,
+          "borderBottomRightRadius": 8,
+          "borderTopLeftRadius": 8,
+          "borderTopRightRadius": 8,
+          "flex": 1,
+          "height": 8,
+        }
+      }
+    />
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`ProgressBar Start matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <View
+    accessibilityRole="progressbar"
+    accessibilityValue={
+      {
+        "max": 4,
+        "min": 0,
+        "now": 1,
+      }
+    }
+    style={
+      {
+        "alignSelf": "stretch",
+        "flexDirection": "row",
+        "gap": 8,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "backgroundColor": "#1F7A4C",
+          "borderBottomLeftRadius": 8,
+          "borderBottomRightRadius": 8,
+          "borderTopLeftRadius": 8,
+          "borderTopRightRadius": 8,
+          "flex": 1,
+          "height": 8,
+        }
+      }
+    />
+    <View
+      style={
+        {
+          "backgroundColor": "#D7E6DC",
+          "borderBottomLeftRadius": 8,
+          "borderBottomRightRadius": 8,
+          "borderTopLeftRadius": 8,
+          "borderTopRightRadius": 8,
+          "flex": 1,
+          "height": 8,
+        }
+      }
+    />
+    <View
+      style={
+        {
+          "backgroundColor": "#D7E6DC",
+          "borderBottomLeftRadius": 8,
+          "borderBottomRightRadius": 8,
+          "borderTopLeftRadius": 8,
+          "borderTopRightRadius": 8,
+          "flex": 1,
+          "height": 8,
+        }
+      }
+    />
+    <View
+      style={
+        {
+          "backgroundColor": "#D7E6DC",
+          "borderBottomLeftRadius": 8,
+          "borderBottomRightRadius": 8,
+          "borderTopLeftRadius": 8,
+          "borderTopRightRadius": 8,
+          "flex": 1,
+          "height": 8,
+        }
+      }
+    />
+  </View>
+</RNCSafeAreaProvider>
+`;

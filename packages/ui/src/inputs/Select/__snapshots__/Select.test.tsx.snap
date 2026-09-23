@@ -1,0 +1,417 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select Empty matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "stretch",
+        "flexDirection": "column",
+        "gap": 8,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#13241C",
+          "fontFamily": "Inter-SemiBold",
+          "fontSize": 12,
+          "lineHeight": 16,
+        }
+      }
+      suppressHighlighting={true}
+    >
+      City
+    </Text>
+    <View
+      accessibilityLabel="City"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      testID="select"
+    >
+      <View
+        style={
+          {
+            "backgroundColor": "#E6EEE9",
+            "borderBottomLeftRadius": 8,
+            "borderBottomRightRadius": 8,
+            "borderTopLeftRadius": 8,
+            "borderTopRightRadius": 8,
+            "paddingBottom": 16,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 16,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "#5C7268",
+              "fontFamily": "Inter-Medium",
+              "fontSize": 12,
+              "lineHeight": 16,
+            }
+          }
+          suppressHighlighting={true}
+        >
+          Select a city
+        </Text>
+      </View>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`Select Interactive matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "stretch",
+        "flexDirection": "column",
+        "gap": 8,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#13241C",
+          "fontFamily": "Inter-SemiBold",
+          "fontSize": 12,
+          "lineHeight": 16,
+        }
+      }
+      suppressHighlighting={true}
+    >
+      City
+    </Text>
+    <View
+      accessibilityLabel="City"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      testID="select"
+    >
+      <View
+        style={
+          {
+            "backgroundColor": "#E6EEE9",
+            "borderBottomLeftRadius": 8,
+            "borderBottomRightRadius": 8,
+            "borderTopLeftRadius": 8,
+            "borderTopRightRadius": 8,
+            "paddingBottom": 16,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 16,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "#5C7268",
+              "fontFamily": "Inter-Medium",
+              "fontSize": 12,
+              "lineHeight": 16,
+            }
+          }
+          suppressHighlighting={true}
+        >
+          Select a city
+        </Text>
+      </View>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`Select ManyOptions matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "stretch",
+        "flexDirection": "column",
+        "gap": 8,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#13241C",
+          "fontFamily": "Inter-SemiBold",
+          "fontSize": 12,
+          "lineHeight": 16,
+        }
+      }
+      suppressHighlighting={true}
+    >
+      District
+    </Text>
+    <View
+      accessibilityLabel="District"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      testID="select"
+    >
+      <View
+        style={
+          {
+            "backgroundColor": "#E6EEE9",
+            "borderBottomLeftRadius": 8,
+            "borderBottomRightRadius": 8,
+            "borderTopLeftRadius": 8,
+            "borderTopRightRadius": 8,
+            "paddingBottom": 16,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 16,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "#5C7268",
+              "fontFamily": "Inter-Medium",
+              "fontSize": 12,
+              "lineHeight": 16,
+            }
+          }
+          suppressHighlighting={true}
+        >
+          Select a district
+        </Text>
+      </View>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`Select Selected matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "stretch",
+        "flexDirection": "column",
+        "gap": 8,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#13241C",
+          "fontFamily": "Inter-SemiBold",
+          "fontSize": 12,
+          "lineHeight": 16,
+        }
+      }
+      suppressHighlighting={true}
+    >
+      City
+    </Text>
+    <View
+      accessibilityLabel="City"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      testID="select"
+    >
+      <View
+        style={
+          {
+            "backgroundColor": "#E6EEE9",
+            "borderBottomLeftRadius": 8,
+            "borderBottomRightRadius": 8,
+            "borderTopLeftRadius": 8,
+            "borderTopRightRadius": 8,
+            "paddingBottom": 16,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 16,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "#13241C",
+              "fontFamily": "Inter-Medium",
+              "fontSize": 12,
+              "lineHeight": 16,
+            }
+          }
+          suppressHighlighting={true}
+        >
+          Ankara
+        </Text>
+      </View>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;

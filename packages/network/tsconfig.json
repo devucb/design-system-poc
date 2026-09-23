@@ -1,0 +1,11 @@
+{
+  "$schema": "../../.vscode/tsconfig.schema.json",
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "types": ["react"],
+    "baseUrl": "../.."
+  },
+  "include": ["src", "codegen.ts"]
+}

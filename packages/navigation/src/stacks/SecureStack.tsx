@@ -1,20 +1,21 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@ds/language';
 import { StackNavigationHeader } from '../chrome/NavigationHeader';
 import { SecureScreenName } from '../config/enums';
 import { secureScreensOnPlatform } from '../config/screenDefinitions';
 import type { SecureStackParamList } from '../config/types';
 import { SecureTabNavigator } from './SecureTabNavigator';
+import { Box } from '@ds/ui';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const Stack = createNativeStackNavigator<SecureStackParamList>();
 
 export function SecureStackNavigator() {
   const { t } = useTranslation();
-
+  const insets = useSafeAreaInsets();
   return (
     <Stack.Navigator
       screenOptions={{
-        header: props => <StackNavigationHeader {...props} />,
         headerShown: false,
         headerShadowVisible: false,
       }}
@@ -29,8 +30,13 @@ export function SecureStackNavigator() {
           name={screen.name}
           component={screen.component}
           options={{
-            headerShown: screen.headerShown,
-            title: screen.titleKey ? t(screen.titleKey) : undefined,
+            header: props => {
+              return (
+                <Box paddingTop={insets.top}>
+                  <StackNavigationHeader {...props} />
+                </Box>
+              );
+            },
           }}
         />
       ))}

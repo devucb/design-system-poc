@@ -54,6 +54,10 @@ export function initTelemetry(options: InitTelemetryOptions) {
   });
 }
 
+export function getRootErrorHandlers() {
+  return {};
+}
+
 export function wrapRoot(Component: ComponentType) {
   if (!initialized) {
     return Component;

@@ -1,5 +1,4 @@
-import {useSession} from '@ds/session/authStore';
-import {useHasCompletedSplash} from '@ds/session/splashStore';
+import { useSession, useHasCompletedSplash } from '@ds/store';
 import {NonSecureStackNavigator} from './NonSecureStack';
 import {SecureStackNavigator} from './SecureStack';
 import {SplashStackNavigator} from './SplashStack';

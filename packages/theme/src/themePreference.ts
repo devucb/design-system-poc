@@ -1,12 +1,11 @@
 import {create} from 'zustand';
 import {useColorScheme, type ColorSchemeName} from 'react-native';
-import {StorageKey} from '@ds/storage/keys';
-import {storage} from '@ds/storage/mmkv';
 import {
   ThemePreference,
   type ColorScheme,
   type ThemePreferenceValue,
 } from './preferences';
+import { StorageKey, storage } from '@ds/storage';
 
 type ThemeState = {
   preference: ThemePreferenceValue

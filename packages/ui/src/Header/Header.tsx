@@ -1,7 +1,6 @@
 import { Pressable } from 'react-native';
 import { useTheme } from 'tamagui';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { space } from '@ds/theme/tokens';
+import { space } from '@ds/theme';
 import { Box } from '../Box/Box';
 import { Text } from '../Text/Text';
 import { Icon } from '../Icon/Icon';
@@ -15,26 +14,15 @@ export function Header({
   title,
   onBack,
   backAccessibilityLabel,
-  backgroundColor = '$backgroundBase',
-  paddingHorizontal = '$lg',
-  paddingVertical = '$mdl',
   gap = '$sm',
 }: HeaderProps) {
   const theme = useTheme();
-  const insets = useSafeAreaInsets();
   const iconSize = 24;
-  const topInset = { paddingTop: insets.top };
   const iconColor = theme.textPrimary!.val;
 
   return (
-    <Box backgroundColor={backgroundColor} style={topInset}>
-      <Box
-        paddingHorizontal={paddingHorizontal}
-        paddingVertical={paddingVertical}
-        flexDirection="row"
-        alignItems="center"
-        gap={gap}
-      >
+    <Box backgroundColor="$backgroundBase">
+      <Box flexDirection="row" alignItems="center" gap={gap}>
         {onBack ? (
           <Pressable
             onPress={onBack}

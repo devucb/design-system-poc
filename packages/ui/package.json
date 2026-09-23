@@ -5,8 +5,16 @@
   "scripts": {
     "typecheck": "tsc --noEmit"
   },
+  "dependencies": {
+    "recharts": "3.10.1"
+  },
   "peerDependencies": {
+    "@ds/native": "*",
     "@ds/theme": "*",
+    "@gorhom/bottom-sheet": "*",
+    "@react-native-community/datetimepicker": "*",
+    "@shopify/flash-list": "*",
+    "@shopify/react-native-skia": "*",
     "react": "*",
     "react-native": "*",
     "react-native-gesture-handler": "*",
@@ -15,7 +23,12 @@
     "tamagui": "*"
   },
   "devDependencies": {
+    "@ds/native": "*",
     "@ds/theme": "*",
+    "@gorhom/bottom-sheet": "5.2.14",
+    "@react-native-community/datetimepicker": "9.2.1",
+    "@shopify/flash-list": "2.3.2",
+    "@shopify/react-native-skia": "2.12.0",
     "@storybook/react": "10.6.0",
     "@storybook/react-native": "10.6.0",
     "@types/react": "19.2.0",

@@ -1,5 +1,5 @@
 import type {PressableProps} from 'react-native';
-import type {SpaceToken} from '@ds/theme/tokens';
+import type { SpaceToken } from '@ds/theme';
 
 export type ButtonVariant =
   | 'primary'
@@ -21,4 +21,6 @@ export type ButtonProps = Omit<
   children: string;
   /** Inner padding token. Default `$md`. */
   padding?: SpaceToken;
+
+  haptic?: 'selection' | 'impact'
 };

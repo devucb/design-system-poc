@@ -26,11 +26,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     factory.startReactNative(
       withModuleName: "DesignSystemStorybook",
       in: window,
+      initialProperties: detoxInitialProperties(),
       launchOptions: launchOptions
     )
 
     return true
   }
+}
+
+/// Detox iOS args are process argv (`-detoxStory dots`), not SettingsManager.
+private func detoxInitialProperties() -> [String: Any] {
+  let args = ProcessInfo.processInfo.arguments
+  guard let index = args.firstIndex(of: "-detoxStory"),
+        args.indices.contains(index + 1)
+  else {
+    return [:]
+  }
+  return ["detoxStory": args[index + 1]]
 }
 
 class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {

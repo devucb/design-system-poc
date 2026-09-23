@@ -1,0 +1,4 @@
+This is not a Firebase config.
+Download the staging Android app's google-services.json from Firebase
+and save it as google-services.json in this folder.
+That file is gitignored. Do not commit it.

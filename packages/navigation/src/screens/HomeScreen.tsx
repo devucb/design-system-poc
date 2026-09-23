@@ -1,4 +1,4 @@
-import { Home } from '@ds/views/Home/Home';
+import { Home } from '@ds/views';
 import { SecureScreenName, SecureTabName } from '../config/enums';
 import type { SecureTabScreenProps } from '../config/types';
 

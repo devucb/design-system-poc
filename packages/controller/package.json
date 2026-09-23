@@ -1,0 +1,27 @@
+{
+  "name": "@ds/controller",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "5.2.1",
+    "react-hook-form": "7.62.0",
+    "yup": "1.7.0"
+  },
+  "peerDependencies": {
+    "@ds/theme": "*",
+    "@ds/ui": "*",
+    "react": "*",
+    "react-native": "*"
+  },
+  "devDependencies": {
+    "@ds/theme": "*",
+    "@ds/ui": "*",
+    "@types/react": "19.2.0",
+    "react": "19.2.3",
+    "react-native": "0.86.3",
+    "typescript": "5.8.3"
+  }
+}

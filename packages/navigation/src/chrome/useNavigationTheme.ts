@@ -1,6 +1,6 @@
 import {DarkTheme, DefaultTheme} from '@react-navigation/native';
 import {useTheme} from 'tamagui';
-import {useThemePreference} from '@ds/theme/themePreference';
+import { useThemePreference } from '@ds/theme';
 
 export function useNavigationTheme() {
   const theme = useTheme();

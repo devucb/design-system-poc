@@ -1,74 +1,91 @@
-import { useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Box } from '@ds/ui/Box/Box';
-import { Button } from '@ds/ui/Button/Button';
-import { Container } from '@ds/ui/Container/Container';
-import { Section } from '@ds/ui/Section/Section';
-import { Text } from '@ds/ui/Text/Text';
-import { TextField } from '@ds/ui/TextField/TextField';
-import type { AuthFormValues } from '../auth/form';
+import {useState} from 'react';
+import {useTranslation} from '@ds/language';
+import {LoginDocument, useMutation} from '@ds/network';
+import {setSession} from '@ds/store';
+import * as yup from 'yup';
+import {Form, useFormSubmit, emailSchema, passwordSchema} from '@ds/controller';
+import {Box, Button, Container, hideHud, Section, showHud, Text} from '@ds/ui';
+import type {AuthFormValues} from '../auth/form';
 
-export function Login({
-  onSignIn,
-  onRegister,
-}: {
-  onSignIn: (values: AuthFormValues) => Promise<void>;
-  onRegister: () => void;
-}) {
-  const { t } = useTranslation();
-  const [error, setError] = useState<string | null>(null);
-  const credentials = useRef<AuthFormValues>({ email: '', password: '' });
+const loginSchema = yup.object({
+  email: yup.string().required(),
+  password: yup.string()
+});
 
-  async function onSubmit() {
-    try {
-      setError(null);
-      await onSignIn(credentials.current);
-    } catch {
-      setError(t('auth.invalidCredentials'));
-    }
-  }
-
-
-
+function LoginActions({onRegister}: {onRegister: () => void}) {
+  const {t} = useTranslation();
+  const submit = useFormSubmit();
   return (
-    <Container
-      keyboard
-      footer={
-        <Section>
-          <Button variant="primary" onPress={onSubmit}>
-            {t('auth.login')}
-          </Button>
-          <Button variant="primary" onPress={onRegister}>
-            {t('auth.goToRegister')}
-          </Button>
-        </Section>
-      }
+    <Section>
+      <Button variant="primary" onPress={submit} testID="login-submit">
+        {t('auth.login')}
+      </Button>
+      <Button variant="primary" onPress={onRegister}>
+        {t('auth.goToRegister')}
+      </Button>
+    </Section>
+  );
+}
+
+export function Login({onRegister}: {onRegister: () => void}) {
+  const {t} = useTranslation();
+  const [error, setError] = useState<string | null>(null);
+  const [login] = useMutation(LoginDocument);
+  return (
+    <Form
+      schema={loginSchema}
+      defaultValues={{email: 'demo@example.com', password: 'demo'}}
+      onSubmit={async (values: AuthFormValues) => {
+        console.log('values', values);
+        showHud();
+        try {
+          setError(null);
+          const {data} = await login({
+            variables: {
+              input: {
+                email: values.email.trim().toLowerCase(),
+                password: values.password,
+              },
+            },
+          });
+          if (!data?.login) {
+            console.log('login returned no data');
+            throw new Error('login returned no data');
+          }
+          setSession(data.login);
+        } catch {
+          console.log('dsfdsfs', error);
+          setError(t('auth.invalidCredentials'));
+        } finally {
+          hideHud();
+        }
+      }}
     >
-      <Box justifyContent='center' flex={1}>
-        <Section>
-          <TextField
-            label={t('auth.email')}
-            onChangeText={value => {
-              credentials.current.email = value;
-            }}
-            placeholder={t('auth.emailPlaceholder')}
-            keyboardType="email-address"
-          />
-          <TextField
-            label={t('auth.password')}
-            onChangeText={value => {
-              credentials.current.password = value;
-            }}
-            placeholder={t('auth.passwordPlaceholder')}
-            secureTextEntry
-          />
-          {error ? (
-            <Text variant="medium" color="secondary">
-              {error}
-            </Text>
-          ) : null}
-        </Section>
-      </Box>
-    </Container>
+      <Container keyboard footer={<LoginActions onRegister={onRegister} />}>
+        <Box justifyContent="center" flex={1} testID="login">
+          <Section>
+            <Form.TextField
+              name="email"
+              label={t('auth.email')}
+              placeholder={t('auth.emailPlaceholder')}
+              keyboardType="email-address"
+              testID="login-email"
+            />
+            <Form.TextField
+              name="password"
+              label={t('auth.password')}
+              placeholder={t('auth.passwordPlaceholder')}
+              secureTextEntry
+              testID="login-password"
+            />
+            {error ? (
+              <Text variant="medium" color="secondary">
+                {error}
+              </Text>
+            ) : null}
+          </Section>
+        </Box>
+      </Container>
+    </Form>
   );
 }

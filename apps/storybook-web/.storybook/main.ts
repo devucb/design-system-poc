@@ -8,7 +8,10 @@ const appRoot = path.dirname(fileURLToPath(import.meta.url));
 const workspaceRoot = path.resolve(appRoot, '../../..');
 
 const config: StorybookConfig = {
-  stories: ['../../../packages/ui/src/**/*.stories.@(ts|tsx)'],
+  stories: [
+    '../../../packages/ui/src/**/*.stories.@(ts|tsx)',
+    '../../storybook/src/**/*.stories.@(ts|tsx)',
+  ],
   addons: [
     '@storybook/addon-themes',
     '@storybook/addon-docs',
@@ -65,13 +68,18 @@ const config: StorybookConfig = {
             '../src/shims/react-native-localize.ts',
           ),
           '@ds/ui': path.resolve(workspaceRoot, 'packages/ui/src'),
+          '@ds/controller': path.resolve(
+            workspaceRoot,
+            'packages/controller/src',
+          ),
           '@ds/theme': path.resolve(workspaceRoot, 'packages/theme/src'),
-          '@ds/i18n': path.resolve(workspaceRoot, 'packages/i18n/src'),
+          '@ds/language': path.resolve(workspaceRoot, 'packages/language/src'),
           '@ds/storage': path.resolve(workspaceRoot, 'packages/storage/src'),
+          '@ds/native': path.resolve(workspaceRoot, 'packages/native/src'),
         },
       },
       optimizeDeps: {
-        include: ['react-native-web'],
+        include: ['react-native-web', '@shopify/flash-list', 'recharts'],
         esbuildOptions: {
           resolveExtensions: [
             '.web.tsx',

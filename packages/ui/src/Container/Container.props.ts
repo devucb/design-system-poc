@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { Edge } from 'react-native-safe-area-context';
-import type { ColorToken, SpaceToken } from '@ds/theme/tokens';
+import type { ColorToken, SpaceToken } from '@ds/theme';
 
 export type ContainerProps = {
   /**

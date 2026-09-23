@@ -17,6 +17,7 @@ export default mergeConfig(
         reportsDirectory: './coverage',
         include: [
           path.resolve(dirname, '../../packages/ui/src/**/*.{ts,tsx}'),
+          path.resolve(dirname, '../../packages/controller/src/**/*.{ts,tsx}'),
         ],
         exclude: [
           '**/*.stories.*',

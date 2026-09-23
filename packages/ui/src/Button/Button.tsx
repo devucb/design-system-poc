@@ -1,4 +1,5 @@
 import { Pressable, type ViewStyle } from 'react-native';
+import { haptic as hapticNative } from '@ds/native';
 import { Box } from '../Box/Box';
 import { BaseText } from '../Text/Text';
 import type { ButtonProps, ButtonVariant } from './Button.props';
@@ -28,6 +29,7 @@ export function Button({
   children,
   onPress,
   padding = '$md',
+  haptic,
   ...pressable
 }: ButtonProps) {
   const disabled = variant === 'disabled';
@@ -35,7 +37,10 @@ export function Button({
   return (
     <Pressable
       {...pressable}
-      onPress={onPress}
+      onPress={event => {
+        haptic ? hapticNative(haptic) : undefined;
+        onPress?.(event);
+      }}
       disabled={disabled}
       accessibilityRole="button"
       accessibilityState={{ disabled }}

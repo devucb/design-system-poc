@@ -1,4 +1,5 @@
-import type { ColorToken, SpaceToken } from '@ds/theme/tokens';
+import type { ColorToken, SpaceToken } from '@ds/theme';
+import type { BreadcrumbItem } from '../Breadcrumbs/Breadcrumbs.props';
 
 export type HeaderProps = {
   /**
@@ -6,6 +7,11 @@ export type HeaderProps = {
    * Uses Text heading + primary. Header owns the top Safe Area.
    */
   title: string;
+  /**
+   * Web header trail. Native Header ignores this and keeps the title.
+   * When omitted, web falls back to a single crumb from `title`.
+   */
+  crumbs?: BreadcrumbItem[];
   /**
    * Shown when the navigator has a back route. Wired from
    * React Navigation header props, not from the screen tree.

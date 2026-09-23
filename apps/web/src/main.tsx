@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import {
   getRootErrorHandlers,
   TelemetryErrorBoundary,
-} from '@ds/telemetry/telemetry';
+} from '@ds/telemetry';
 import App from './App';
 import './fonts.css';
 

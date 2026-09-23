@@ -1,0 +1,30 @@
+{
+  "name": "@ds/network",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "name": "network"
+  },
+  "scripts": {
+    "codegen": "graphql-codegen --config codegen.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@apollo/client": "4.3.1",
+    "@graphql-typed-document-node/core": "3.2.0",
+    "graphql": "16.11.0",
+    "rxjs": "7.8.2"
+  },
+  "peerDependencies": {
+    "react": "*"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "5.0.7",
+    "@graphql-codegen/typed-document-node": "5.1.2",
+    "@graphql-codegen/typescript": "4.1.6",
+    "@graphql-codegen/typescript-operations": "4.6.1",
+    "@types/react": "19.2.0",
+    "react": "19.2.3",
+    "typescript": "5.8.3"
+  }
+}

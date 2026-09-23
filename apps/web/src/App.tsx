@@ -1,18 +1,20 @@
 import { StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { hydrateLanguage } from '@ds/i18n/languageStore';
-import { hydrateThemePreference } from '@ds/theme/themePreference';
-import { TamaguiRoot } from '@ds/theme/TamaguiRoot';
-import { resetAuth } from '@ds/session/authStore';
-import { initTelemetry } from '@ds/telemetry/telemetry';
+import { hydrateLanguage } from '@ds/language';
+import { NetworkProvider, defaultGraphqlUrl } from '@ds/network';
+import { hydrateThemePreference, TamaguiRoot } from '@ds/theme';
+import { Hud, SheetProvider } from '@ds/ui';
+import { appEnv } from '@ds/native';
+import { resetAuth, useAuthStore } from '@ds/store';
+import { initTelemetry } from '@ds/telemetry';
 import { RootNavigator } from './navigation/RootNavigator';
 
 hydrateThemePreference();
 hydrateLanguage();
 initTelemetry({
   dsn: import.meta.env.VITE_SENTRY_DSN,
-  environment: import.meta.env.MODE,
-  tracesSampleRate: import.meta.env.DEV ? 1 : 0.1,
+  environment: appEnv,
+  tracesSampleRate: Number(import.meta.env.SENTRY_TRACES_SAMPLE_RATE),
 });
 resetAuth();
 
@@ -20,7 +22,15 @@ export default function App() {
   return (
     <GestureHandlerRootView style={styles.root}>
       <TamaguiRoot>
-        <RootNavigator />
+        <NetworkProvider
+          url={defaultGraphqlUrl(import.meta.env.GRAPHQL_URL)}
+          getAccessToken={() => useAuthStore.getState().session?.accessToken}
+        >
+          <SheetProvider>
+            <RootNavigator />
+            <Hud />
+          </SheetProvider>
+        </NetworkProvider>
       </TamaguiRoot>
     </GestureHandlerRootView>
   );

@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@ds/language';
 import { StackNavigationHeader } from '../chrome/NavigationHeader';
 import { nonSecureScreensOnPlatform } from '../config/screenDefinitions';
 import type { NonSecureStackParamList } from '../config/types';

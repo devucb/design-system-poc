@@ -1,0 +1,24 @@
+apply plugin: "com.android.library"
+apply plugin: "org.jetbrains.kotlin.android"
+apply plugin: "com.facebook.react"
+
+android {
+  namespace "com.ds.nativemodule"
+  compileSdk rootProject.ext.compileSdkVersion
+
+  defaultConfig {
+    minSdkVersion rootProject.ext.minSdkVersion
+  }
+
+  sourceSets {
+    main {
+      java.srcDirs += [
+        "${project.buildDir}/generated/source/codegen/java"
+      ]
+    }
+  }
+}
+
+dependencies {
+  implementation "com.facebook.react:react-android"
+}

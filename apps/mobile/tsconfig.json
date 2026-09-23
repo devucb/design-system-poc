@@ -1,0 +1,44 @@
+{
+  "$schema": "../../.vscode/tsconfig.schema.json",
+  "extends": "@react-native/typescript-config",
+  "compilerOptions": {
+    "strict": true,
+    "types": ["jest"],
+    "baseUrl": ".",
+    "moduleSuffixes": [".ios", ".android", ".native", ""],
+    "paths": {
+      "@navigation/*": ["src/navigation/*"],
+      "@ds/ui": ["../../packages/ui/src/index.ts"],
+      "@ds/ui/*": ["../../packages/ui/src/*"],
+      "@ds/controller": ["../../packages/controller/src/index.ts"],
+      "@ds/controller/*": ["../../packages/controller/src/*"],
+      "@ds/network": ["../../packages/network/src/index.ts"],
+      "@ds/network/*": ["../../packages/network/src/*"],
+      "@ds/theme": ["../../packages/theme/src/index.ts"],
+      "@ds/theme/*": ["../../packages/theme/src/*"],
+      "@ds/language": ["../../packages/language/src/index.ts"],
+      "@ds/language/*": ["../../packages/language/src/*"],
+      "@ds/navigation": ["../../packages/navigation/src/index.ts"],
+      "@ds/navigation/*": ["../../packages/navigation/src/*"],
+      "@ds/store": ["../../packages/store/src/index.ts"],
+      "@ds/store/*": ["../../packages/store/src/*"],
+      "@ds/storage": ["../../packages/storage/src/index.ts"],
+      "@ds/storage/*": ["../../packages/storage/src/*"],
+      "@ds/native": ["../../packages/native/src/index.ts"],
+      "@ds/native/*": ["../../packages/native/src/*"],
+      "@ds/telemetry": ["../../packages/telemetry/src/index.ts"],
+      "@ds/telemetry/*": ["../../packages/telemetry/src/*"],
+      "@ds/views": ["../../packages/views/src/index.ts"],
+      "@ds/views/*": ["../../packages/views/src/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx", "../../packages/language/src/i18next.d.ts"],
+  "exclude": [
+    "**/node_modules",
+    "**/Pods",
+    "e2e",
+    ".rn-template",
+    "**/*.web.ts",
+    "**/*.web.tsx"
+  ]
+}

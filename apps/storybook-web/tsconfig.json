@@ -9,10 +9,18 @@
     "baseUrl": ".",
     "moduleSuffixes": [".web", ""],
     "paths": {
+      "@ds/ui": ["../../packages/ui/src/index.ts"],
       "@ds/ui/*": ["../../packages/ui/src/*"],
+      "@ds/controller": ["../../packages/controller/src/index.ts"],
+      "@ds/controller/*": ["../../packages/controller/src/*"],
+      "@ds/theme": ["../../packages/theme/src/index.ts"],
       "@ds/theme/*": ["../../packages/theme/src/*"],
-      "@ds/i18n/*": ["../../packages/i18n/src/*"],
-      "@ds/storage/*": ["../../packages/storage/src/*"]
+      "@ds/language": ["../../packages/language/src/index.ts"],
+      "@ds/language/*": ["../../packages/language/src/*"],
+      "@ds/storage": ["../../packages/storage/src/index.ts"],
+      "@ds/storage/*": ["../../packages/storage/src/*"],
+      "@ds/native": ["../../packages/native/src/index.ts"],
+      "@ds/native/*": ["../../packages/native/src/*"]
     }
   },
   "include": [
@@ -23,14 +31,28 @@
     "vite.config.ts",
     "../../packages/ui/src/**/*.ts",
     "../../packages/ui/src/**/*.tsx",
+    "../../packages/controller/src/**/*.ts",
+    "../../packages/controller/src/**/*.tsx",
+    "../storybook/src/forms/**/*.ts",
+    "../storybook/src/forms/**/*.tsx",
     "../../packages/theme/src/**/*.ts",
     "../../packages/theme/src/**/*.tsx",
-    "../../packages/i18n/src/**/*.ts",
-    "../../packages/i18n/src/**/*.tsx",
-    "../../packages/storage/src/**/*.ts"
+    "../../packages/language/src/**/*.ts",
+    "../../packages/language/src/**/*.tsx",
+    "../../packages/storage/src/**/*.ts",
+    "../../packages/native/src/**/*.ts"
   ],
   "exclude": [
     "../../packages/ui/src/**/*.test.ts",
-    "../../packages/ui/src/**/*.test.tsx"
+    "../../packages/ui/src/**/*.test.tsx",
+    "../../packages/ui/src/Sheet/Sheet.tsx",
+    "../../packages/ui/src/List/sheetScroll.ts",
+    "../../packages/ui/src/Graph/BarGraph/BarGraph.tsx",
+    "../../packages/ui/src/Graph/LineGraph/LineGraph.tsx",
+    "../../packages/ui/src/SliderCarousel/SliderCarousel.tsx",
+    "../../packages/ui/src/inputs/DateTimePicker/DateTimePicker.tsx",
+    "../../packages/native/src/haptics.ts",
+    "../../packages/native/src/NativeHaptics.ts",
+    "../../packages/native/src/**/*.test.ts"
   ]
 }

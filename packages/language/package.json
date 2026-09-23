@@ -1,0 +1,26 @@
+{
+  "name": "@ds/language",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@ds/storage": "*",
+    "i18next": "*",
+    "react": "*",
+    "react-i18next": "*",
+    "react-native-localize": "*",
+    "zustand": "*"
+  },
+  "devDependencies": {
+    "@ds/storage": "*",
+    "@types/react": "19.2.0",
+    "i18next": "26.4.0",
+    "react": "19.2.3",
+    "react-i18next": "17.0.12",
+    "react-native-localize": "3.6.0",
+    "typescript": "5.8.3",
+    "zustand": "5.0.15"
+  }
+}

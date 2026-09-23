@@ -52,6 +52,7 @@ exports[`Container Default matches snapshot 1`] = `
             {
               "flex": 1,
               "paddingBottom": 34,
+              "paddingTop": 0,
             }
           }
         >
@@ -125,9 +126,15 @@ exports[`Container Scrolling matches snapshot 1`] = `
         <RCTScrollView
           collapsable={false}
           contentContainerStyle={
-            {
-              "flexGrow": 1,
-            }
+            [
+              {
+                "flexGrow": 1,
+              },
+              {
+                "paddingBottom": 0,
+                "paddingTop": 0,
+              },
+            ]
           }
           contentInset={
             {
@@ -217,10 +224,8 @@ exports[`Container TokenOverrides matches snapshot 1`] = `
         style={
           {
             "flex": 1,
-            "paddingBottom": 24,
             "paddingLeft": 16,
             "paddingRight": 16,
-            "paddingTop": 24,
           }
         }
       >
@@ -228,7 +233,8 @@ exports[`Container TokenOverrides matches snapshot 1`] = `
           style={
             {
               "flex": 1,
-              "paddingBottom": 34,
+              "paddingBottom": 58,
+              "paddingTop": 24,
             }
           }
         >
@@ -304,6 +310,7 @@ exports[`Container WithFooter matches snapshot 1`] = `
             {
               "flex": 1,
               "paddingBottom": 0,
+              "paddingTop": 0,
             }
           }
         >
@@ -447,7 +454,6 @@ exports[`Container WithTopAndFooter matches snapshot 1`] = `
         style={
           {
             "flex": 1,
-            "paddingBottom": 24,
             "paddingLeft": 24,
             "paddingRight": 24,
           }
@@ -472,7 +478,8 @@ exports[`Container WithTopAndFooter matches snapshot 1`] = `
           style={
             {
               "flex": 1,
-              "paddingBottom": 0,
+              "paddingBottom": 24,
+              "paddingTop": 0,
             }
           }
         >
@@ -626,6 +633,7 @@ exports[`Container WithoutSafeArea matches snapshot 1`] = `
             {
               "flex": 1,
               "paddingBottom": 0,
+              "paddingTop": 0,
             }
           }
         >

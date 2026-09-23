@@ -16,10 +16,13 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@ds/i18n": "*",
+    "@ds/controller": "*",
+    "@ds/language": "*",
+    "@ds/native": "*",
     "@ds/storage": "*",
     "@ds/theme": "*",
     "@ds/ui": "*",
+    "@shopify/flash-list": "2.3.2",
     "i18next": "26.4.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
@@ -28,7 +31,9 @@
     "react-native-safe-area-context": "5.5.2",
     "react-native-svg": "15.15.5",
     "react-native-web": "0.21.1",
+    "recharts": "3.10.1",
     "tamagui": "1.144.4",
+    "yup": "1.7.0",
     "zustand": "5.0.15"
   },
   "devDependencies": {

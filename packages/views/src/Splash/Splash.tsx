@@ -1,11 +1,15 @@
 import {useEffect} from 'react';
-import {useTranslation} from 'react-i18next';
-import {Box} from '@ds/ui/Box/Box';
-import {Container} from '@ds/ui/Container/Container';
-import {Section} from '@ds/ui/Section/Section';
-import {Text} from '@ds/ui/Text/Text';
+import { useTranslation } from '@ds/language';
+import { Box, Container, Section, Text } from '@ds/ui';
 
 const SPLASH_DURATION_MS = 1200;
+
+let splashDurationMs = SPLASH_DURATION_MS;
+
+/** Detox holds splash via App `initialProperties.detoxSplashMs`. */
+export function setSplashDurationMs(ms: number) {
+  splashDurationMs = ms;
+}
 
 export function Splash({onComplete}: {onComplete: () => void}) {
   const {t} = useTranslation();
@@ -13,13 +17,18 @@ export function Splash({onComplete}: {onComplete: () => void}) {
   useEffect(() => {
     const timer = setTimeout(() => {
       onComplete();
-    }, SPLASH_DURATION_MS);
+    }, splashDurationMs);
     return () => clearTimeout(timer);
   }, [onComplete]);
 
   return (
     <Container useSafeArea>
-      <Box flex={1} justifyContent="center" alignItems="center">
+      <Box
+        flex={1}
+        justifyContent="center"
+        alignItems="center"
+        testID="splash"
+      >
         <Section gap="$sm">
           <Text variant="heading" color="primary" textAlign="center">
             {t('splash.title')}

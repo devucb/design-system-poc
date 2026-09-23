@@ -97,11 +97,17 @@ local.properties
 *.hprof
 .cxx/
 *.keystore
-!debug.keystore
+*.jks
 .kotlin/
 *.apk
 *.aab
 captures/
+**/google-services.json
+**/GoogleService-Info.plist
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/test_output
+fastlane/README.md
 
 # CocoaPods / Ruby
 **/Pods/

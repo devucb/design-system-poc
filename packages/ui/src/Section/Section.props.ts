@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { SpaceToken } from '@ds/theme/tokens';
+import type { SpaceToken } from '@ds/theme';
 
 export type { SpaceToken };
 
