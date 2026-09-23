@@ -40,6 +40,8 @@ jobs:
       - run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+          # The release commit is generated here. Gitleaks still runs in its own workflow.
+          HUSKY: "0"
 
   staging-android:
     needs: release
