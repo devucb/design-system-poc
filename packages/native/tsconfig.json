@@ -1,0 +1,10 @@
+{
+  "$schema": "../../.vscode/tsconfig.schema.json",
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "types": ["react", "react-native"]
+  },
+  "include": ["src"],
+  "exclude": ["src/**/*.web.ts", "src/**/*.test.ts"]
+}

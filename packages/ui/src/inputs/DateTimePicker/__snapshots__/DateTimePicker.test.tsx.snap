@@ -1,0 +1,417 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DateTimePicker Empty matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "stretch",
+        "flexDirection": "column",
+        "gap": 8,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#13241C",
+          "fontFamily": "Inter-SemiBold",
+          "fontSize": 12,
+          "lineHeight": 16,
+        }
+      }
+      suppressHighlighting={true}
+    >
+      Date
+    </Text>
+    <View
+      accessibilityLabel="Date"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      testID="datetime"
+    >
+      <View
+        style={
+          {
+            "backgroundColor": "#E6EEE9",
+            "borderBottomLeftRadius": 8,
+            "borderBottomRightRadius": 8,
+            "borderTopLeftRadius": 8,
+            "borderTopRightRadius": 8,
+            "paddingBottom": 16,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 16,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "#5C7268",
+              "fontFamily": "Inter-Medium",
+              "fontSize": 12,
+              "lineHeight": 16,
+            }
+          }
+          suppressHighlighting={true}
+        >
+          Pick a date
+        </Text>
+      </View>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`DateTimePicker Filled matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "stretch",
+        "flexDirection": "column",
+        "gap": 8,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#13241C",
+          "fontFamily": "Inter-SemiBold",
+          "fontSize": 12,
+          "lineHeight": 16,
+        }
+      }
+      suppressHighlighting={true}
+    >
+      Date
+    </Text>
+    <View
+      accessibilityLabel="Date"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      testID="datetime"
+    >
+      <View
+        style={
+          {
+            "backgroundColor": "#E6EEE9",
+            "borderBottomLeftRadius": 8,
+            "borderBottomRightRadius": 8,
+            "borderTopLeftRadius": 8,
+            "borderTopRightRadius": 8,
+            "paddingBottom": 16,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 16,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "#13241C",
+              "fontFamily": "Inter-Medium",
+              "fontSize": 12,
+              "lineHeight": 16,
+            }
+          }
+          suppressHighlighting={true}
+        >
+          Sep 22, 2026
+        </Text>
+      </View>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`DateTimePicker Interactive matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "stretch",
+        "flexDirection": "column",
+        "gap": 8,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#13241C",
+          "fontFamily": "Inter-SemiBold",
+          "fontSize": 12,
+          "lineHeight": 16,
+        }
+      }
+      suppressHighlighting={true}
+    >
+      Date
+    </Text>
+    <View
+      accessibilityLabel="Date"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      testID="datetime"
+    >
+      <View
+        style={
+          {
+            "backgroundColor": "#E6EEE9",
+            "borderBottomLeftRadius": 8,
+            "borderBottomRightRadius": 8,
+            "borderTopLeftRadius": 8,
+            "borderTopRightRadius": 8,
+            "paddingBottom": 16,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 16,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "#5C7268",
+              "fontFamily": "Inter-Medium",
+              "fontSize": 12,
+              "lineHeight": 16,
+            }
+          }
+          suppressHighlighting={true}
+        >
+          Pick a date
+        </Text>
+      </View>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`DateTimePicker Time matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "stretch",
+        "flexDirection": "column",
+        "gap": 8,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#13241C",
+          "fontFamily": "Inter-SemiBold",
+          "fontSize": 12,
+          "lineHeight": 16,
+        }
+      }
+      suppressHighlighting={true}
+    >
+      Time
+    </Text>
+    <View
+      accessibilityLabel="Time"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      testID="datetime"
+    >
+      <View
+        style={
+          {
+            "backgroundColor": "#E6EEE9",
+            "borderBottomLeftRadius": 8,
+            "borderBottomRightRadius": 8,
+            "borderTopLeftRadius": 8,
+            "borderTopRightRadius": 8,
+            "paddingBottom": 16,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 16,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "#13241C",
+              "fontFamily": "Inter-Medium",
+              "fontSize": 12,
+              "lineHeight": 16,
+            }
+          }
+          suppressHighlighting={true}
+        >
+          12:00 PM
+        </Text>
+      </View>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;

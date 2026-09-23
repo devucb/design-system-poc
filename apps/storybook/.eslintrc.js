@@ -3,7 +3,7 @@ module.exports = {
   extends: '@react-native',
   plugins: ['no-barrel-files'],
   rules: {
-    'no-barrel-files/no-barrel-files': 'error',
+    'no-barrel-files/no-barrel-files': 'off',
     'react/no-unstable-nested-components': ['error', { allowAsProps: true }],
   },
   ignorePatterns: [

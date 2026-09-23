@@ -1,0 +1,97 @@
+{
+  "splash": {
+    "title": "Boilerplate",
+    "subtitle": "Yükleniyor"
+  },
+  "auth": {
+    "loginTitle": "Tekrar hoş geldin",
+    "loginSubtitle": "Devam etmek için giriş yap.",
+    "registerTitle": "Hesap oluştur",
+    "registerSubtitle": "Birkaç bilgi yeterli.",
+    "email": "E-posta",
+    "emailPlaceholder": "ornek@posta.com",
+    "password": "Şifre",
+    "passwordPlaceholder": "••••••••",
+    "login": "Giriş yap",
+    "register": "Hesap oluştur",
+    "goToRegister": "Hesabın yok mu? Kayıt ol",
+    "goToLogin": "Zaten hesabın var mı? Giriş yap",
+    "invalidCredentials": "Geçerli bir e-posta ve şifre gir."
+  },
+  "common": {
+    "back": "Geri",
+    "menu": "Menü",
+    "closeMenu": "Menüyü kapat"
+  },
+  "tabs": {
+    "home": "Ana sayfa",
+    "explore": "Keşfet",
+    "activity": "Aktivite",
+    "profile": "Profil"
+  },
+  "home": {
+    "title": "Ana sayfa",
+    "body": "Oturum açıkken hesap yığınına kısayollar.",
+    "cta": "Cüzdanı aç",
+    "notifications": "Bildirimler",
+    "wallet": "Cüzdan",
+    "support": "Destek",
+    "chart": "Bu hafta",
+    "mon": "Pzt",
+    "tue": "Sal",
+    "wed": "Çar",
+    "thu": "Per",
+    "fri": "Cum"
+  },
+  "explore": {
+    "title": "Keşfet",
+    "body": "Yer tutucu sekme. İçerik buraya gelecek."
+  },
+  "activity": {
+    "title": "Aktivite",
+    "body": "Yer tutucu sekme. İçerik buraya gelecek."
+  },
+  "profile": {
+    "title": "Profil",
+    "theme": "Tema",
+    "themeLight": "Açık",
+    "themeDark": "Koyu",
+    "themeSystem": "Sistem",
+    "language": "Dil",
+    "languageEn": "İngilizce",
+    "languageTr": "Türkçe",
+    "logout": "Çıkış yap",
+    "notifications": "Bildirimler",
+    "wallet": "Cüzdan",
+    "support": "Destek"
+  },
+  "notifications": {
+    "title": "Bildirimler",
+    "payoutTitle": "Ödeme gönderildi",
+    "payoutBody": "Dünkü transfer bankana ulaştı.",
+    "securityTitle": "Yeni oturum",
+    "securityBody": "Bu cihazda bir oturum açıldı.",
+    "digestTitle": "Haftalık özet",
+    "digestBody": "Keşfet’te üç kart seni bekliyor.",
+    "markRead": "Tümünü okundu yap"
+  },
+  "wallet": {
+    "title": "Cüzdan",
+    "balanceLabel": "Kullanılabilir",
+    "balance": "1.240,00",
+    "recent": "Son işlemler",
+    "transferTitle": "Gelen transfer",
+    "transferBody": "Vadesiz hesaptan · bugün",
+    "payoutTitle": "Kart ödemesi",
+    "payoutBody": "Bankaya · dün",
+    "send": "Gönder"
+  },
+  "support": {
+    "title": "Destek",
+    "faqOneTitle": "Oturum nerede tutuluyor?",
+    "faqOneBody": "Yalnızca bu cihazda. Çıkış yapınca silinir.",
+    "faqTwoTitle": "Dili nasıl değiştiririm?",
+    "faqTwoBody": "Profil → Dil. Tüm ekranlara uygulanır.",
+    "contact": "Destekle iletişim"
+  }
+}

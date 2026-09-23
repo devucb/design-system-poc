@@ -1,0 +1,115 @@
+default_platform(:android)
+
+require "json"
+
+# fastlane/ sits in apps/mobile, so the workspace root is three levels up.
+REPO_ROOT = File.expand_path("../../..", __dir__)
+STAGING_BUNDLE_ID = "com.designsystem.app.staging"
+PROD_BUNDLE_ID = "com.designsystem.app"
+
+def marketing_version
+  JSON.parse(File.read(File.join(REPO_ROOT, "package.json"))).fetch("version")
+end
+
+def build_number
+  ENV.fetch("BUILD_NUMBER", "1")
+end
+
+def sentry_release(app_id)
+  "#{app_id}@#{marketing_version}+#{build_number}"
+end
+
+def release_notes
+  ENV.fetch("RELEASE_NOTES", "Staging build")
+end
+
+platform :ios do
+  lane :set_version do
+    increment_version_number(
+      version_number: marketing_version,
+      xcodeproj: "ios/DesignSystem.xcodeproj",
+    )
+    increment_build_number(
+      build_number: build_number,
+      xcodeproj: "ios/DesignSystem.xcodeproj",
+    )
+  end
+
+  lane :staging do
+    set_version
+    setup_ci if ENV["CI"]
+    ENV["SENTRY_RELEASE"] = sentry_release(STAGING_BUNDLE_ID)
+    match(
+      type: "adhoc",
+      readonly: true,
+      app_identifier: STAGING_BUNDLE_ID,
+    )
+    build_app(
+      workspace: "ios/DesignSystem.xcworkspace",
+      scheme: "DesignSystem-staging",
+      configuration: "Release-staging",
+      export_method: "ad-hoc",
+      output_directory: "build",
+      output_name: "DesignSystem-staging.ipa",
+    )
+    firebase_app_distribution(
+      app: ENV["FIREBASE_IOS_APP_ID"],
+      ipa_path: lane_context[SharedValues::IPA_OUTPUT_PATH],
+      groups: "staging-testers",
+      release_notes: release_notes,
+      service_credentials_file: ENV["FIREBASE_SA_FILE"],
+    )
+  end
+
+  lane :production do
+    set_version
+    setup_ci if ENV["CI"]
+    ENV["SENTRY_RELEASE"] = sentry_release(PROD_BUNDLE_ID)
+    match(
+      type: "appstore",
+      readonly: true,
+      app_identifier: PROD_BUNDLE_ID,
+    )
+    build_app(
+      workspace: "ios/DesignSystem.xcworkspace",
+      scheme: "DesignSystem-prod",
+      configuration: "Release-prod",
+      export_method: "app-store",
+      output_directory: "build",
+      output_name: "DesignSystem.ipa",
+    )
+    # TODO: Fastlane pilot — upload this IPA to App Store Connect.
+    # First submission stays manual. Do not add deliver/pilot until then.
+  end
+end
+
+platform :android do
+  lane :staging do
+    ENV["SENTRY_RELEASE"] = sentry_release(STAGING_BUNDLE_ID)
+    gradle(
+      project_dir: "android",
+      task: "assemble",
+      flavor: "Staging",
+      build_type: "Release",
+    )
+    firebase_app_distribution(
+      app: ENV["FIREBASE_ANDROID_APP_ID"],
+      android_artifact_path: lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH],
+      groups: "staging-testers",
+      release_notes: release_notes,
+      service_credentials_file: ENV["FIREBASE_SA_FILE"],
+    )
+  end
+
+  lane :production do
+    ENV["SENTRY_RELEASE"] = sentry_release(PROD_BUNDLE_ID)
+    gradle(
+      project_dir: "android",
+      task: "bundle",
+      flavor: "Prod",
+      build_type: "Release",
+    )
+    # TODO: Fastlane supply — upload this AAB to Google Play.
+    # First submission stays manual. Do not add supply until then.
+  end
+end

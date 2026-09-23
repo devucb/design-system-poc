@@ -1,11 +1,11 @@
 import type { ComponentType } from 'react';
-import type { IconName } from '@ds/ui/Icon/Icon.props';
 import {
   NonSecureScreenName,
   SecureScreenName,
   SecureTabName,
   SplashScreenName,
 } from './enums';
+import type { IconName } from '@ds/ui';
 import type { AppPlatform } from './platform';
 import { forPlatform } from './platform';
 import { ActivityScreen } from '../screens/ActivityScreen';

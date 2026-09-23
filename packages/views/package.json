@@ -5,21 +5,28 @@
   "scripts": {
     "typecheck": "tsc --noEmit"
   },
+  "dependencies": {
+    "yup": "1.7.0"
+  },
   "peerDependencies": {
-    "@ds/i18n": "*",
+    "@ds/controller": "*",
+    "@ds/language": "*",
+    "@ds/network": "*",
+    "@ds/store": "*",
     "@ds/theme": "*",
     "@ds/ui": "*",
     "react": "*",
-    "react-i18next": "*",
     "react-native": "*"
   },
   "devDependencies": {
-    "@ds/i18n": "*",
+    "@ds/controller": "*",
+    "@ds/language": "*",
+    "@ds/network": "*",
+    "@ds/store": "*",
     "@ds/theme": "*",
     "@ds/ui": "*",
     "@types/react": "19.2.0",
     "react": "19.2.3",
-    "react-i18next": "17.0.12",
     "react-native": "0.86.3",
     "typescript": "5.8.3"
   }

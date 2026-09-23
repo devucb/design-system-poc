@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SliderCarousel Empty matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "alignSelf": "stretch",
+        "height": 360,
+      }
+    }
+  >
+    <View
+      accessibilityLabel="Offers"
+      accessibilityRole="adjustable"
+      onLayout={[Function]}
+      style={
+        {
+          "alignSelf": "stretch",
+          "flexGrow": 1,
+        }
+      }
+    />
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`SliderCarousel Large matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "alignSelf": "stretch",
+        "height": 360,
+      }
+    }
+  >
+    <View
+      accessibilityLabel="Offers"
+      accessibilityRole="adjustable"
+      onLayout={[Function]}
+      style={
+        {
+          "alignSelf": "stretch",
+          "flexGrow": 1,
+        }
+      }
+    />
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`SliderCarousel Medium matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "alignSelf": "stretch",
+        "height": 360,
+      }
+    }
+  >
+    <View
+      accessibilityLabel="Offers"
+      accessibilityRole="adjustable"
+      onLayout={[Function]}
+      style={
+        {
+          "alignSelf": "stretch",
+          "flexGrow": 1,
+        }
+      }
+    />
+  </View>
+</RNCSafeAreaProvider>
+`;

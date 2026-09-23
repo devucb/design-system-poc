@@ -22,59 +22,13 @@ exports[`Card Empty matches snapshot 1`] = `
         "borderBottomRightRadius": 8,
         "borderTopLeftRadius": 8,
         "borderTopRightRadius": 8,
-        "paddingBottom": 8,
-        "paddingLeft": 8,
-        "paddingRight": 8,
-        "paddingTop": 8,
-      }
-    }
-  />
-</RNCSafeAreaProvider>
-`;
-
-exports[`Card TokenOverrides matches snapshot 1`] = `
-<RNCSafeAreaProvider
-  onInsetsChange={[Function]}
-  style={
-    [
-      {
-        "flex": 1,
-      },
-      {
-        "flex": 1,
-      },
-    ]
-  }
->
-  <View
-    style={
-      {
-        "backgroundColor": "#D7E6DC",
-        "borderBottomLeftRadius": 16,
-        "borderBottomRightRadius": 16,
-        "borderTopLeftRadius": 16,
-        "borderTopRightRadius": 16,
         "paddingBottom": 16,
         "paddingLeft": 16,
         "paddingRight": 16,
         "paddingTop": 16,
       }
     }
-  >
-    <Text
-      style={
-        {
-          "color": "#13241C",
-          "fontFamily": "Inter-Medium",
-          "fontSize": 12,
-          "lineHeight": 16,
-        }
-      }
-      suppressHighlighting={true}
-    >
-      Token padding and fill
-    </Text>
-  </View>
+  />
 </RNCSafeAreaProvider>
 `;
 
@@ -100,10 +54,10 @@ exports[`Card WithBody matches snapshot 1`] = `
         "borderBottomRightRadius": 8,
         "borderTopLeftRadius": 8,
         "borderTopRightRadius": 8,
-        "paddingBottom": 8,
-        "paddingLeft": 8,
-        "paddingRight": 8,
-        "paddingTop": 8,
+        "paddingBottom": 16,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 16,
       }
     }
   >

@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LineGraph Empty matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "alignSelf": "stretch",
+        "height": 220,
+      }
+    }
+  >
+    <View
+      accessibilityLabel=""
+      accessibilityRole="image"
+      onLayout={[Function]}
+      style={
+        {
+          "alignSelf": "stretch",
+          "flexGrow": 1,
+        }
+      }
+    />
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`LineGraph Secondary matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "alignSelf": "stretch",
+        "height": 220,
+      }
+    }
+  >
+    <View
+      accessibilityLabel="Mon 12, Tue 18, Wed 9, Thu 22, Fri 15"
+      accessibilityRole="image"
+      onLayout={[Function]}
+      style={
+        {
+          "alignSelf": "stretch",
+          "flexGrow": 1,
+        }
+      }
+    />
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`LineGraph Weekly matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "alignSelf": "stretch",
+        "height": 220,
+      }
+    }
+  >
+    <View
+      accessibilityLabel="Mon 12, Tue 18, Wed 9, Thu 22, Fri 15"
+      accessibilityRole="image"
+      onLayout={[Function]}
+      style={
+        {
+          "alignSelf": "stretch",
+          "flexGrow": 1,
+        }
+      }
+    />
+  </View>
+</RNCSafeAreaProvider>
+`;

@@ -1,12 +1,8 @@
 import { Pressable } from 'react-native';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@ds/language';
 import { useTheme } from 'tamagui';
-import { Box } from '@ds/ui/Box/Box';
-import { Icon } from '@ds/ui/Icon/Icon';
-import { Text } from '@ds/ui/Text/Text';
-import { navigateToTab } from '@ds/navigation/chrome/navigationRef';
-import type { SecureTabName } from '@ds/navigation/config/enums';
-import { tabDestinations } from '@ds/navigation/config/tabConfig';
+import { Box, Icon, Text } from '@ds/ui';
+import { navigateToTab, tabDestinations, type SecureTabName } from '@ds/navigation';
 
 export function WebNavList({
   activeTab,

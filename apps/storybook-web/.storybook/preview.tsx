@@ -5,10 +5,9 @@ import type { Preview, ReactRenderer } from '@storybook/react';
 import 'react-native-gesture-handler';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { hydrateLanguage } from '@ds/i18n/languageStore';
-import type { ColorScheme } from '@ds/theme/preferences';
-import { TamaguiRoot } from '@ds/theme/TamaguiRoot';
-import { Box } from '@ds/ui/Box/Box';
+import { hydrateLanguage } from '@ds/language';
+import { TamaguiRoot, type ColorScheme } from '@ds/theme';
+import { Box, SheetProvider } from '@ds/ui';
 import '../src/fonts.css';
 
 hydrateLanguage();
@@ -29,9 +28,11 @@ function StoryProviders({
     <GestureHandlerRootView style={styles.root}>
       <SafeAreaProvider initialMetrics={initialMetrics} style={styles.root}>
         <TamaguiRoot scheme={scheme}>
-          <Box flex={1} backgroundColor="$backgroundBase">
-            {children}
-          </Box>
+          <SheetProvider>
+            <Box flex={1} backgroundColor="$backgroundBase">
+              {children}
+            </Box>
+          </SheetProvider>
         </TamaguiRoot>
       </SafeAreaProvider>
     </GestureHandlerRootView>

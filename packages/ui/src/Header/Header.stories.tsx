@@ -24,6 +24,16 @@ export const WithBack: Story = {
   },
 };
 
+export const Crumbs: Story = {
+  args: {
+    title: 'Wallet',
+    crumbs: [
+      {label: 'Home', onPress: fn()},
+      {label: 'Wallet'},
+    ],
+  },
+};
+
 export const TokenOverrides: Story = {
   args: {
     title: 'Wallet',

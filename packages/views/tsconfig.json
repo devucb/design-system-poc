@@ -7,10 +7,21 @@
     "types": ["react", "react-native"],
     "baseUrl": "../..",
     "paths": {
+      "@ds/ui": ["packages/ui/src/index.ts"],
       "@ds/ui/*": ["packages/ui/src/*"],
+      "@ds/native": ["packages/native/src/index.ts"],
+      "@ds/native/*": ["packages/native/src/*"],
+      "@ds/controller": ["packages/controller/src/index.ts"],
+      "@ds/controller/*": ["packages/controller/src/*"],
+      "@ds/theme": ["packages/theme/src/index.ts"],
       "@ds/theme/*": ["packages/theme/src/*"],
-      "@ds/i18n/*": ["packages/i18n/src/*"]
+      "@ds/language": ["packages/language/src/index.ts"],
+      "@ds/language/*": ["packages/language/src/*"],
+      "@ds/network": ["packages/network/src/index.ts"],
+      "@ds/network/*": ["packages/network/src/*"],
+      "@ds/store": ["packages/store/src/index.ts"],
+      "@ds/store/*": ["packages/store/src/*"]
     }
   },
-  "include": ["src", "../i18n/src/i18next.d.ts"]
+  "include": ["src", "../language/src/i18next.d.ts"]
 }

@@ -7,9 +7,15 @@ import { sentryVitePlugin } from '@sentry/vite-plugin';
 const workspaceRoot = path.resolve(__dirname, '../..');
 
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, workspaceRoot, '');
-  const sentryAuthToken = env.SENTRY_AUTH_TOKEN?.trim();
+  // Token comes from the process environment only. loadEnv must not supply it.
+  const sentryAuthToken = process.env.SENTRY_AUTH_TOKEN?.trim();
+  const flavor =
+    mode === 'development' ? 'dev' : mode === 'production' ? 'prod' : mode;
+  const env = loadEnv(flavor, workspaceRoot, '');
   const uploadSourcemaps = Boolean(sentryAuthToken);
+  const appEnv = flavor;
+  const graphqlUrl = env.GRAPHQL_URL || env.VITE_GRAPHQL_URL || '';
+  const traces = env.SENTRY_TRACES_SAMPLE_RATE || '1';
 
   return {
     envDir: workspaceRoot,
@@ -60,14 +66,17 @@ export default defineConfig(({ mode }) => {
           'src/shims/react-native-localize.ts',
         ),
         '@ds/ui': path.resolve(workspaceRoot, 'packages/ui/src'),
+        '@ds/controller': path.resolve(workspaceRoot, 'packages/controller/src'),
+        '@ds/network': path.resolve(workspaceRoot, 'packages/network/src'),
         '@ds/theme': path.resolve(workspaceRoot, 'packages/theme/src'),
-        '@ds/i18n': path.resolve(workspaceRoot, 'packages/i18n/src'),
+        '@ds/language': path.resolve(workspaceRoot, 'packages/language/src'),
         '@ds/navigation': path.resolve(
           workspaceRoot,
           'packages/navigation/src',
         ),
-        '@ds/session': path.resolve(workspaceRoot, 'packages/session/src'),
+        '@ds/store': path.resolve(workspaceRoot, 'packages/store/src'),
         '@ds/storage': path.resolve(workspaceRoot, 'packages/storage/src'),
+        '@ds/native': path.resolve(workspaceRoot, 'packages/native/src'),
         '@ds/telemetry': path.resolve(workspaceRoot, 'packages/telemetry/src'),
         '@ds/views': path.resolve(workspaceRoot, 'packages/views/src'),
       },
@@ -77,8 +86,18 @@ export default defineConfig(({ mode }) => {
       'process.env.NODE_ENV': JSON.stringify(
         process.env.NODE_ENV ?? 'development',
       ),
+      'import.meta.env.APP_ENV': JSON.stringify(appEnv),
+      'import.meta.env.GRAPHQL_URL': JSON.stringify(graphqlUrl),
+      'import.meta.env.SENTRY_TRACES_SAMPLE_RATE': JSON.stringify(traces),
     },
     optimizeDeps: {
+      include: [
+        '@apollo/client',
+        '@apollo/client/react',
+        '@shopify/flash-list',
+        'rxjs',
+        'recharts',
+      ],
       esbuildOptions: {
         resolveExtensions: [
           '.web.tsx',

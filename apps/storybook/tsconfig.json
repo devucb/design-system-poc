@@ -6,16 +6,25 @@
     "baseUrl": ".",
     "moduleSuffixes": [".ios", ".android", ".native", ""],
     "paths": {
+      "@ds/ui": ["../../packages/ui/src/index.ts"],
       "@ds/ui/*": ["../../packages/ui/src/*"],
+      "@ds/controller": ["../../packages/controller/src/index.ts"],
+      "@ds/controller/*": ["../../packages/controller/src/*"],
+      "@ds/theme": ["../../packages/theme/src/index.ts"],
       "@ds/theme/*": ["../../packages/theme/src/*"],
-      "@ds/i18n/*": ["../../packages/i18n/src/*"],
-      "@ds/storage/*": ["../../packages/storage/src/*"]
+      "@ds/language": ["../../packages/language/src/index.ts"],
+      "@ds/language/*": ["../../packages/language/src/*"],
+      "@ds/storage": ["../../packages/storage/src/index.ts"],
+      "@ds/storage/*": ["../../packages/storage/src/*"],
+      "@ds/native": ["../../packages/native/src/index.ts"],
+      "@ds/native/*": ["../../packages/native/src/*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx", "../../packages/i18n/src/i18next.d.ts"],
+  "include": ["**/*.ts", "**/*.tsx", "../../packages/language/src/i18next.d.ts"],
   "exclude": [
     "**/node_modules",
     "**/Pods",
+    "e2e",
     ".rnstorybook/storybook.requires.ts",
     "**/*.web.ts",
     "**/*.web.tsx"

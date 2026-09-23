@@ -1,0 +1,5 @@
+# DesignSystem — com.designsystem.app
+# Certificates and Apple IDs come from the environment (match), not from this file.
+
+app_identifier("com.designsystem.app")
+package_name("com.designsystem.app")

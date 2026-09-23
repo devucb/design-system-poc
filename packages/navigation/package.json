@@ -6,7 +6,8 @@
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@ds/session": "*",
+    "@ds/language": "*",
+    "@ds/store": "*",
     "@ds/telemetry": "*",
     "@ds/theme": "*",
     "@ds/ui": "*",
@@ -16,12 +17,12 @@
     "@react-navigation/native": "*",
     "@react-navigation/native-stack": "*",
     "react": "*",
-    "react-i18next": "*",
     "react-native": "*",
     "tamagui": "*"
   },
   "devDependencies": {
-    "@ds/session": "*",
+    "@ds/language": "*",
+    "@ds/store": "*",
     "@ds/telemetry": "*",
     "@ds/theme": "*",
     "@ds/ui": "*",
@@ -32,7 +33,6 @@
     "@react-navigation/native-stack": "7.18.10",
     "@types/react": "19.2.0",
     "react": "19.2.3",
-    "react-i18next": "17.0.12",
     "react-native": "0.86.3",
     "tamagui": "1.144.4",
     "typescript": "5.8.3"

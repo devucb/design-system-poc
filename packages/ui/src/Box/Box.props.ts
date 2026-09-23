@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { StyleProp, ViewProps, ViewStyle } from 'react-native';
-import type { ColorToken, RadiusToken, SpaceToken } from '@ds/theme/tokens';
+import type { ColorToken, RadiusToken, SpaceToken } from '@ds/theme';
 
 export type BoxProps = {
   children?: ReactNode;
@@ -48,4 +48,12 @@ export type BoxProps = {
    * Do not put catalog spacing or colors here — use token props.
    */
   style?: StyleProp<ViewStyle>;
-} & Pick<ViewProps, 'pointerEvents' | 'onLayout' | 'testID'>;
+} & Pick<
+  ViewProps,
+  | 'pointerEvents'
+  | 'onLayout'
+  | 'testID'
+  | 'accessibilityRole'
+  | 'accessibilityValue'
+  | 'accessibilityLabel'
+>;

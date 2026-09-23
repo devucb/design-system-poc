@@ -1,0 +1,5 @@
+# MATCH_GIT_URL is set by CI. No repo URL or password belongs in this file.
+
+git_url(ENV["MATCH_GIT_URL"])
+storage_mode("git")
+type("adhoc")

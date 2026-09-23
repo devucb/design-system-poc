@@ -1,0 +1,12 @@
+---
+description: Conventional commits and semantic-release own the version.
+alwaysApply: true
+---
+
+# Commits and versioning
+
+Write commit messages and pull request titles as conventional commits. Squash-merge is on, so the PR title is the commit semantic-release reads.
+
+Types: `feat`, `fix`, `perf`, `refactor`, `docs`, `chore`, `ci`, `test`. `feat` is a minor release. `fix` and `perf` are patch. A `!` after the type, or a `BREAKING CHANGE` footer, is a major release. `docs`, `chore`, `ci`, `test`, `refactor`, and `style` do not release.
+
+Never edit the version by hand. Do not change `package.json` `"version"`, `CHANGELOG.md`, Android `versionName` / `versionCode`, or iOS `MARKETING_VERSION` / `CURRENT_PROJECT_VERSION`. semantic-release writes the marketing version. CI sets the build number from `git rev-list --count HEAD`.

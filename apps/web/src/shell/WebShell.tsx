@@ -1,18 +1,15 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { Pressable, StyleSheet, useWindowDimensions } from 'react-native';
-import { useTranslation } from 'react-i18next';
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import { useTranslation } from '@ds/language';
 import { useTheme } from 'tamagui';
-import { useSession } from '@ds/session/authStore';
-import { useHasCompletedSplash } from '@ds/session/splashStore';
-import { space } from '@ds/theme/tokens';
-import { Box } from '@ds/ui/Box/Box';
-import { Icon } from '@ds/ui/Icon/Icon';
-import { getFocusedTabName } from '@ds/navigation/chrome/getFocusedTabName';
-import { navigationRef } from '@ds/navigation/chrome/navigationRef';
+import { useSession, useHasCompletedSplash } from '@ds/store';
+import { space } from '@ds/theme';
+import { Box, Icon } from '@ds/ui';
+import { getFocusedTabName, navigationRef } from '@ds/navigation';
 import { WebNavList } from './WebNavList';
 import {
   DESKTOP_CONTENT_MAX_WIDTH,

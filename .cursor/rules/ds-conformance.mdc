@@ -6,11 +6,15 @@ alwaysApply: true
 # Design-system conformance
 
 When the user shares a Figma URL, screen, or asks to implement/build a design,
-map instances 1:1 to the catalog components, importing each from its source file
-(`@ds/ui/Button/Button`, `@ds/ui/Card/Card`, …) since the project has
-no barrel files. Do not invent styles, hex colors, or extra RN `style` props.
+map instances 1:1 to the catalog components, importing each from the package
+index (`import { Button, TextField } from '@ds/ui'`). Do not invent styles,
+hex colors, or extra RN `style` props.
 
-Catalog (Figma Components page): Text, Button, Card, Section, Container, Icon.
+Catalog (Figma Components page): Text, Button, Card, Section, Container, Icon, List, Sheet, Loading, Hud, Breadcrumbs, Header, TextField, Select, DateTimePicker, Pin, Tckn, Form, ProgressBar, Dots, BarGraph, LineGraph, SliderCarousel. Inputs, stepper, and graphs all resolve from `@ds/ui`. Form bindings live in `@ds/controller` (`Form`, `Form.TextField`, …). Web header is Breadcrumbs (`Header.web.tsx`).
+
+Repeating rows are a list, not a stack of instances: render them with
+`List` from `@ds/ui` (virtualized) instead of mapping the array into a column.
+List draws no chrome of its own, so this does not change the design.
 
 Device chrome (status bar, home indicator) is allowed on phone frames. It is not a product component.
 

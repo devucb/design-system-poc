@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { addons } from 'storybook/manager-api';
 import { GLOBALS_UPDATED, UPDATE_GLOBALS } from 'storybook/internal/core-events';
 import { Button } from '@storybook/react-native-ui-common';
-import type { ColorScheme } from '@ds/theme/preferences';
+import type { ColorScheme } from '@ds/theme';
 
 const OPTIONS: ColorScheme[] = ['light', 'dark'];
 

@@ -1,5 +1,5 @@
-import { signOut } from '@ds/session/authStore';
-import { Profile } from '@ds/views/Profile/Profile';
+import { signOut } from '@ds/store';
+import { Profile } from '@ds/views';
 import { SecureScreenName, SecureTabName } from '../config/enums';
 import type { SecureTabScreenProps } from '../config/types';
 

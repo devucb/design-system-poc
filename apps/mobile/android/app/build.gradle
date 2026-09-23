@@ -1,0 +1,177 @@
+apply plugin: "com.android.application"
+apply plugin: "org.jetbrains.kotlin.android"
+apply plugin: "com.facebook.react"
+
+/**
+ * This is the configuration block to customize your React Native Android app.
+ * By default you don't need to apply any configuration, just uncomment the lines you need.
+ */
+react {
+    /* Folders — npm workspaces hoist to the repo root */
+    root = file("../../")
+    reactNativeDir = file("../../../../node_modules/react-native")
+    codegenDir = file("../../../../node_modules/@react-native/codegen")
+    cliFile = file("../../../../node_modules/react-native/cli.js")
+
+    /* Variants */
+    debuggableVariants = [
+        "devDebug",
+        "devDebugOptimized",
+        "stagingDebug",
+        "stagingDebugOptimized",
+        "prodDebug",
+        "prodDebugOptimized",
+    ]
+
+    /* Bundling */
+    //   A list containing the node command and its flags. Default is just 'node'.
+    // nodeExecutableAndArgs = ["node"]
+    //
+    //   The command to run when bundling. By default is 'bundle'
+    // bundleCommand = "ram-bundle"
+    //
+    //   The path to the CLI configuration file. Default is empty.
+    // bundleConfig = file(../rn-cli.config.js)
+    //
+    //   The name of the generated asset file containing your JS bundle
+    // bundleAssetName = "MyApplication.android.bundle"
+    //
+    //   The entry file for bundle generation. Default is 'index.android.js' or 'index.js'
+    // entryFile = file("../js/MyApplication.android.js")
+    //
+    //   A list of extra flags to pass to the 'bundle' commands.
+    //   See https://github.com/react-native-community/cli/blob/main/docs/commands.md#bundle
+    // extraPackagerArgs = []
+
+    /* Hermes Commands */
+    //   The hermes compiler command to run. By default it is 'hermesc'
+    // hermesCommand = "$rootDir/my-custom-hermesc/bin/hermesc"
+    //
+    //   The list of flags to pass to the Hermes compiler. By default is "-O", "-output-source-map"
+    // hermesFlags = ["-O", "-output-source-map"]
+
+    /* Autolinking */
+    autolinkLibrariesWithApp()
+}
+
+/**
+ * Set this to true to Run Proguard on Release builds to minify the Java bytecode.
+ */
+def enableProguardInReleaseBuilds = false
+
+/**
+ * The preferred build flavor of JavaScriptCore (JSC)
+ *
+ * For example, to use the international variant, you can use:
+ * `def jscFlavor = io.github.react-native-community:jsc-android-intl:2026004.+`
+ *
+ * The international variant includes ICU i18n library and necessary data
+ * allowing to use e.g. `Date.toLocaleString` and `String.localeCompare` that
+ * give correct results when using with locales other than en-US. Note that
+ * this variant is about 6MiB larger per architecture than default.
+ */
+def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
+
+def keystorePassword = System.getenv("KEYSTORE_PASSWORD")
+def releaseKeyAlias = System.getenv("KEY_ALIAS")
+def keyPassword = System.getenv("KEY_PASSWORD")
+def hasReleaseKeystore = keystorePassword && releaseKeyAlias && keyPassword
+
+// Workspace root package.json (semantic-release). This module is
+// apps/mobile/android/app, so the repo root is four levels up.
+def marketingVersion = new groovy.json.JsonSlurper().parse(file("../../../../package.json")).version
+def buildNumberEnv = System.getenv("BUILD_NUMBER")
+def resolvedVersionCode = buildNumberEnv?.isInteger() ? buildNumberEnv.toInteger() : 1
+
+// Public values only. react-native-config compiles this file into BuildConfig.
+// ENVFILE wins when set (npm scripts, CI). Otherwise the flavor name picks the file.
+// SENTRY_AUTH_TOKEN is never in that file; sentry.gradle reads it from the environment.
+project.ext.envConfigFiles = [
+    dev: ".env.development",
+    staging: ".env.staging",
+    prod: ".env.production",
+]
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
+
+apply from: new File(["node", "--print", "require.resolve('@sentry/react-native/package.json')"].execute().text.trim(), "../sentry.gradle")
+android {
+    ndkVersion rootProject.ext.ndkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdk rootProject.ext.compileSdkVersion
+
+    namespace "com.designsystem.app"
+    defaultConfig {
+        applicationId "com.designsystem.app"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode resolvedVersionCode
+        versionName marketingVersion
+    }
+    flavorDimensions += "environment"
+    productFlavors {
+        dev {
+            dimension "environment"
+            applicationIdSuffix ".dev"
+            resValue "string", "app_name", "DesignSystem Dev"
+            manifestPlaceholders = [appEnv: "dev"]
+        }
+        staging {
+            dimension "environment"
+            applicationIdSuffix ".staging"
+            resValue "string", "app_name", "DesignSystem Staging"
+            manifestPlaceholders = [appEnv: "staging"]
+        }
+        prod {
+            dimension "environment"
+            resValue "string", "app_name", "DesignSystem"
+            manifestPlaceholders = [appEnv: "prod"]
+        }
+    }
+    buildFeatures {
+        buildConfig true
+    }
+    signingConfigs {
+        debug {
+            storeFile file('debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+        release {
+            if (hasReleaseKeystore) {
+                storeFile file("release.keystore")
+                storePassword keystorePassword
+                keyAlias releaseKeyAlias
+                keyPassword keyPassword
+            }
+        }
+    }
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        release {
+            // CI passes KEYSTORE_* / KEY_ALIAS / KEY_PASSWORD. Local release builds
+            // keep the debug keystore until those are set.
+            // Sentry's Gradle plugin names the release "<applicationId>@<versionName>+<versionCode>"
+            // unless SENTRY_RELEASE is set. versionName and versionCode above are that pair.
+            // SENTRY_AUTH_TOKEN stays in the process environment.
+            signingConfig hasReleaseKeystore ? signingConfigs.release : signingConfigs.debug
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        }
+    }
+}
+
+dependencies {
+    // The version of react-native is set by the React Native Gradle Plugin
+    implementation("com.facebook.react:react-android")
+
+    if (hermesEnabled.toBoolean()) {
+        implementation("com.facebook.react:hermes-android")
+    } else {
+        implementation jscFlavor
+    }
+}
+
+apply from: file("../../../../node_modules/react-native-vector-icons/fonts.gradle")

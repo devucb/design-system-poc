@@ -1,8 +1,6 @@
 import { Platform } from 'react-native';
-import { useTranslation } from 'react-i18next';
-import { Container } from '@ds/ui/Container/Container';
-import { Section } from '@ds/ui/Section/Section';
-import { Text } from '@ds/ui/Text/Text';
+import { useTranslation } from '@ds/language';
+import { Container, Section, Text } from '@ds/ui';
 
 export function Explore() {
   const { t } = useTranslation();

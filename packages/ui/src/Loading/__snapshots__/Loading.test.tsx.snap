@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading Inline matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <ActivityIndicator
+    accessibilityLabel="Loading"
+    color="#1F7A4C"
+    testID="loading"
+  />
+</RNCSafeAreaProvider>
+`;
+
+exports[`Loading Overlay matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "alignSelf": "stretch",
+        "height": 160,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#F4F7F5",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
+      testID="loading-overlay"
+    >
+      <ActivityIndicator
+        accessibilityLabel="Loading"
+        color="#1F7A4C"
+        testID="loading"
+      />
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;

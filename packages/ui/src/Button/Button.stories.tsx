@@ -9,6 +9,7 @@ const meta = {
   args: {
     children: 'Continue',
     variant: 'primary',
+    haptic: 'selection',
     onPress: fn(),
   },
 } satisfies Meta<typeof Button>;
@@ -18,6 +19,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
+  args: {
+    haptic: 'selection',
+  },
   play: async ({ args, canvas, userEvent }) => {
     await userEvent.click(
       canvas.getByRole('button', { name: 'Continue' }),

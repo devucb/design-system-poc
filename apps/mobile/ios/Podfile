@@ -1,0 +1,64 @@
+# Resolve react_native_pods.rb with node to allow for hoisting
+require Pod::Executable.execute_command('node', ['-p',
+  'require.resolve(
+    "react-native/scripts/react_native_pods.rb",
+    {paths: [process.argv[1]]},
+  )', __dir__]).strip
+
+platform :ios, min_ios_version_supported
+prepare_react_native_project!
+
+project 'DesignSystem', {
+  'Debug' => :debug,
+  'Release' => :release,
+  'Debug-staging' => :debug,
+  'Release-staging' => :release,
+  'Debug-prod' => :debug,
+  'Release-prod' => :release,
+}
+
+linkage = ENV['USE_FRAMEWORKS']
+if linkage != nil
+  Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
+  use_frameworks! :linkage => linkage.to_sym
+end
+
+use_modular_headers!
+
+target 'DesignSystem' do
+  config = use_native_modules!
+
+  use_react_native!(
+    :path => config[:reactNativePath],
+    # An absolute path to your application root.
+    :app_path => "#{Pod::Config.instance.installation_root}/.."
+  )
+
+  post_install do |installer|
+    react_native_post_install(
+      installer,
+      config[:reactNativePath],
+      :mac_catalyst_enabled => false,
+      # :ccache_enabled => true
+    )
+
+    # react-native-config reads ENVFILE. These match the Xcode configurations
+    # (Debug/Release are the dev scheme). A shell ENVFILE still overrides this.
+    envfiles = {
+      'Debug' => '.env.development',
+      'Release' => '.env.development',
+      'Debug-staging' => '.env.staging',
+      'Release-staging' => '.env.staging',
+      'Debug-prod' => '.env.production',
+      'Release-prod' => '.env.production',
+    }
+    installer.pods_project.targets.each do |target|
+      next unless target.name == 'react-native-config'
+
+      target.build_configurations.each do |build_config|
+        envfile = envfiles[build_config.name]
+        build_config.build_settings['ENVFILE'] = envfile if envfile
+      end
+    end
+  end
+end

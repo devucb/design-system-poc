@@ -1,0 +1,154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tckn Empty matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "stretch",
+        "flexDirection": "column",
+        "gap": 8,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#13241C",
+          "fontFamily": "Inter-SemiBold",
+          "fontSize": 12,
+          "lineHeight": 16,
+        }
+      }
+      suppressHighlighting={true}
+    >
+      TCKN
+    </Text>
+    <View
+      style={
+        {
+          "backgroundColor": "#E6EEE9",
+          "borderBottomLeftRadius": 8,
+          "borderBottomRightRadius": 8,
+          "borderTopLeftRadius": 8,
+          "borderTopRightRadius": 8,
+          "overflow": "hidden",
+          "paddingBottom": 16,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 16,
+        }
+      }
+    >
+      <TextInput
+        accessibilityLabel="TCKN"
+        autoCapitalize="none"
+        autoCorrect={false}
+        keyboardType="number-pad"
+        maxLength={11}
+        onChangeText={[Function]}
+        placeholder="###########"
+        placeholderTextColor="#5C7268"
+        style={
+          {
+            "color": "#13241C",
+            "fontFamily": "Inter-Medium",
+            "fontSize": 12,
+            "lineHeight": 16,
+            "padding": 0,
+          }
+        }
+      />
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`Tckn Filled matches snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "stretch",
+        "flexDirection": "column",
+        "gap": 8,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#13241C",
+          "fontFamily": "Inter-SemiBold",
+          "fontSize": 12,
+          "lineHeight": 16,
+        }
+      }
+      suppressHighlighting={true}
+    >
+      TCKN
+    </Text>
+    <View
+      style={
+        {
+          "backgroundColor": "#E6EEE9",
+          "borderBottomLeftRadius": 8,
+          "borderBottomRightRadius": 8,
+          "borderTopLeftRadius": 8,
+          "borderTopRightRadius": 8,
+          "overflow": "hidden",
+          "paddingBottom": 16,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 16,
+        }
+      }
+    >
+      <TextInput
+        accessibilityLabel="TCKN"
+        autoCapitalize="none"
+        autoCorrect={false}
+        defaultValue="10000000146"
+        keyboardType="number-pad"
+        maxLength={11}
+        onChangeText={[Function]}
+        placeholder="###########"
+        placeholderTextColor="#5C7268"
+        style={
+          {
+            "color": "#13241C",
+            "fontFamily": "Inter-Medium",
+            "fontSize": 12,
+            "lineHeight": 16,
+            "padding": 0,
+          }
+        }
+      />
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;

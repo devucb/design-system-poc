@@ -1,9 +1,14 @@
-import { useTranslation } from 'react-i18next';
-import { Button } from '@ds/ui/Button/Button';
-import { Card } from '@ds/ui/Card/Card';
-import { Container } from '@ds/ui/Container/Container';
-import { Section } from '@ds/ui/Section/Section';
-import { Text } from '@ds/ui/Text/Text';
+import { useTranslation } from '@ds/language';
+import {
+  Box,
+  Button,
+  Card,
+  Container,
+  LineGraph,
+  Section,
+  Text,
+  graphHost,
+} from '@ds/ui';
 
 export function Home({
   onOpenNotifications,
@@ -20,7 +25,6 @@ export function Home({
     <Container
       edges={['top']}
       scroll
-      paddingBottom="$lg"
       footer={
         <Button variant="primary" onPress={onOpenWallet}>
           {t('home.cta')}
@@ -28,11 +32,28 @@ export function Home({
       }
     >
       <Section>
-        <Card />
         <Section>
-          <Text variant="heading" color="primary">
-            {t('home.title')}
+          <Text variant="semiBold" color="secondary">
+            {t('home.chart')}
           </Text>
+          <Box backgroundColor='red' style={graphHost}>
+            <LineGraph
+              data={[
+                { label: t('home.mon'), value: 12 },
+                { label: t('home.tue'), value: 18 },
+                { label: t('home.wed'), value: 9 },
+                { label: t('home.thu'), value: 22 },
+                { label: t('home.fri'), value: 15 },
+              ]}
+            />
+          </Box>
+        </Section>
+        <Section>
+          <Box testID="home">
+            <Text variant="heading" color="primary">
+              {t('home.title')}
+            </Text>
+          </Box>
           <Text variant="medium" color="secondary">
             {t('home.body')}
           </Text>

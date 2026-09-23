@@ -1,9 +1,5 @@
-import { useTranslation } from 'react-i18next';
-import { Button } from '@ds/ui/Button/Button';
-import { Card } from '@ds/ui/Card/Card';
-import { Container } from '@ds/ui/Container/Container';
-import { Section } from '@ds/ui/Section/Section';
-import { Text } from '@ds/ui/Text/Text';
+import { useTranslation } from '@ds/language';
+import { Button, Card, Container, Section, Text } from '@ds/ui';
 
 export function Wallet() {
   const { t } = useTranslation();
