@@ -1,3 +1,9 @@
+## [1.0.5](https://github.com/devucb/design-system-poc/compare/v1.0.4...v1.0.5) (2026-09-24)
+
+### Bug Fixes
+
+* ci ([#8](https://github.com/devucb/design-system-poc/issues/8)) ([6d694b5](https://github.com/devucb/design-system-poc/commit/6d694b5a70ccf60c072362c1aa70327c59d25f35))
+
 ## [1.0.4](https://github.com/devucb/design-system-poc/compare/v1.0.3...v1.0.4) (2026-09-24)
 
 ### Bug Fixes
