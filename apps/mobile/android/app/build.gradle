@@ -44,8 +44,9 @@ react {
     // extraPackagerArgs = []
 
     /* Hermes Commands */
-    //   The hermes compiler command to run. By default it is 'hermesc'
-    // hermesCommand = "$rootDir/my-custom-hermesc/bin/hermesc"
+    // npm workspaces hoist hermes-compiler to the repo root. The Gradle plugin
+    // looks for it under apps/mobile/node_modules and prints %OS-BIN% when missing.
+    hermesCommand = "../../node_modules/hermes-compiler/hermesc/%OS-BIN%/hermesc"
     //
     //   The list of flags to pass to the Hermes compiler. By default is "-O", "-output-source-map"
     // hermesFlags = ["-O", "-output-source-map"]
