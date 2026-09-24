@@ -1,3 +1,9 @@
+## [1.0.4](https://github.com/devucb/design-system-poc/compare/v1.0.3...v1.0.4) (2026-09-24)
+
+### Bug Fixes
+
+* android haptic & ios signing ([#7](https://github.com/devucb/design-system-poc/issues/7)) ([4d541d3](https://github.com/devucb/design-system-poc/commit/4d541d3ac8f0488ec0d635df540b89780ec8f7a9))
+
 ## [1.0.3](https://github.com/devucb/design-system-poc/compare/v1.0.2...v1.0.3) (2026-09-24)
 
 ### Bug Fixes
