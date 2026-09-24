@@ -1,3 +1,9 @@
+## [1.0.3](https://github.com/devucb/design-system-poc/compare/v1.0.2...v1.0.3) (2026-09-24)
+
+### Bug Fixes
+
+* build gradle ([#6](https://github.com/devucb/design-system-poc/issues/6)) ([5decfd1](https://github.com/devucb/design-system-poc/commit/5decfd19d2a6ce3a92b232e76e85b5e5eca0e912))
+
 ## [1.0.2](https://github.com/devucb/design-system-poc/compare/v1.0.1...v1.0.2) (2026-09-24)
 
 ### Bug Fixes
