@@ -2,7 +2,6 @@ package com.ds.nativemodule
 
 import android.os.Build
 import android.view.HapticFeedbackConstants
-import android.view.View
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.module.annotations.ReactModule
 
@@ -31,7 +30,7 @@ class NativeHapticsModule(reactContext: ReactApplicationContext) :
         }
     }
     view.post {
-      view.performHapticFeedback(constant, View.HAPTIC_FEEDBACK_FLAG_IGNORE_VIEW_SETTING)
+      view.performHapticFeedback(constant, HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING)
     }
   }
 
