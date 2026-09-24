@@ -1,3 +1,9 @@
+## [1.0.1](https://github.com/devucb/design-system-poc/compare/v1.0.0...v1.0.1) (2026-09-24)
+
+### Bug Fixes
+
+* ruby yml ([#4](https://github.com/devucb/design-system-poc/issues/4)) ([9ad9eaf](https://github.com/devucb/design-system-poc/commit/9ad9eaf339efa2d0c69015d2e0735f26a2b7a376))
+
 ## 1.0.0 (2026-09-23)
 
 ### Features
