@@ -1,7 +1,8 @@
 # Build from the repo root: docker build -f apps/bff/Dockerfile .
 FROM node:22.22-bookworm-slim AS build
 WORKDIR /repo
-COPY package.json package-lock.json ./
+# .npmrc sets legacy-peer-deps. Without it, npm ci rejects the lockfile.
+COPY package.json package-lock.json .npmrc ./
 COPY apps ./apps
 COPY packages ./packages
 RUN npm ci --ignore-scripts
