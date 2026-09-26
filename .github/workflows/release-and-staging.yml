@@ -5,6 +5,15 @@ on:
     branches: [main]
   workflow_dispatch:
     inputs:
+      package:
+        description: Release line to run
+        type: choice
+        default: all
+        options:
+          - all
+          - mobile
+          - bff
+          - root
       skip_ios:
         description: Skip the iOS staging job
         type: boolean
@@ -15,9 +24,41 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  release:
+  changes:
     if: ${{ github.event_name != 'push' || !startsWith(github.event.head_commit.message, 'chore(release)') }}
     runs-on: ubuntu-latest
+    outputs:
+      mobile: ${{ steps.lines.outputs.mobile }}
+      bff: ${{ steps.lines.outputs.bff }}
+      root: ${{ steps.lines.outputs.root }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - id: lines
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            package="${{ inputs.package }}"
+            for line in mobile bff root; do
+              if [ "$package" = "all" ] || [ "$package" = "$line" ]; then
+                echo "${line}=true" >> "$GITHUB_OUTPUT"
+              else
+                echo "${line}=false" >> "$GITHUB_OUTPUT"
+              fi
+            done
+          else
+            node scripts/release-lines.cjs "${{ github.event.before }}" "${{ github.sha }}" >> "$GITHUB_OUTPUT"
+          fi
+
+  release:
+    needs: changes
+    if: needs.changes.outputs.mobile == 'true' || needs.changes.outputs.bff == 'true' || needs.changes.outputs.root == 'true'
+    runs-on: ubuntu-latest
+    outputs:
+      mobile_released: ${{ steps.release.outputs.mobile_released }}
+      bff_released: ${{ steps.release.outputs.bff_released }}
+      bff_version: ${{ steps.release.outputs.bff_version }}
     permissions:
       contents: write
       issues: write
@@ -37,15 +78,50 @@ jobs:
 
       - run: npm ci
 
-      - run: npx semantic-release
+      - id: release
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-          # The release commit is generated here. Gitleaks still runs in its own workflow.
+          # Release commits are generated here. Gitleaks still runs in its own workflow.
           HUSKY: "0"
+          RUN_ROOT: ${{ needs.changes.outputs.root }}
+          RUN_MOBILE: ${{ needs.changes.outputs.mobile }}
+          RUN_BFF: ${{ needs.changes.outputs.bff }}
+        run: |
+          run_line() {
+            local name="$1"
+            local before after
+            before=$(git rev-parse HEAD)
+            RELEASE_LINE="$name" npx semantic-release
+            after=$(git rev-parse HEAD)
+            if [ "$before" != "$after" ]; then
+              echo "${name}_released=true" >> "$GITHUB_OUTPUT"
+              if [ "$name" = "bff" ]; then
+                echo "bff_version=$(node -p "require('./apps/bff/package.json').version")" >> "$GITHUB_OUTPUT"
+              fi
+            else
+              echo "${name}_released=false" >> "$GITHUB_OUTPUT"
+            fi
+          }
+
+          if [ "$RUN_ROOT" = "true" ]; then
+            run_line root
+          else
+            echo "root_released=false" >> "$GITHUB_OUTPUT"
+          fi
+          if [ "$RUN_MOBILE" = "true" ]; then
+            run_line mobile
+          else
+            echo "mobile_released=false" >> "$GITHUB_OUTPUT"
+          fi
+          if [ "$RUN_BFF" = "true" ]; then
+            run_line bff
+          else
+            echo "bff_released=false" >> "$GITHUB_OUTPUT"
+          fi
 
   staging-android:
-    needs: release
-    if: needs.release.result == 'success'
+    needs: [changes, release]
+    if: needs.release.result == 'success' && (needs.release.outputs.mobile_released == 'true' || (github.event_name == 'workflow_dispatch' && (inputs.package == 'mobile' || inputs.package == 'all')))
     runs-on: ubuntu-latest
     environment: staging
     steps:
@@ -107,8 +183,8 @@ jobs:
         run: bundle exec fastlane android staging
 
   staging-ios:
-    needs: release
-    if: needs.release.result == 'success' && github.event.inputs.skip_ios != 'true'
+    needs: [changes, release]
+    if: needs.release.result == 'success' && github.event.inputs.skip_ios != 'true' && (needs.release.outputs.mobile_released == 'true' || (github.event_name == 'workflow_dispatch' && (inputs.package == 'mobile' || inputs.package == 'all')))
     runs-on: macos-latest
     environment: staging
     steps:
@@ -164,3 +240,51 @@ jobs:
           MATCH_GIT_URL: ${{ secrets.MATCH_GIT_URL }}
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
         run: bundle exec fastlane ios staging
+
+  bff:
+    needs: [changes, release]
+    if: needs.changes.outputs.bff == 'true' && needs.release.result == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: image
+        run: |
+          image="ghcr.io/$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')/bff"
+          {
+            echo "tags<<EOF"
+            echo "${image}:main"
+            echo "${image}:${{ github.sha }}"
+            if [ "${{ needs.release.outputs.bff_released }}" = "true" ]; then
+              echo "${image}:bff-v${{ needs.release.outputs.bff_version }}"
+            fi
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: apps/bff/Dockerfile
+          push: true
+          tags: ${{ steps.image.outputs.tags }}
+
+      - name: Deploy on Render
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$RENDER_DEPLOY_HOOK" ]; then
+            echo "RENDER_DEPLOY_HOOK secret is missing."
+            exit 1
+          fi
+          curl -fsS -X POST "$RENDER_DEPLOY_HOOK"

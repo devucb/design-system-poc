@@ -140,15 +140,27 @@ Commits and PR titles are conventional commits. Squash-merge is on, so the PR ti
 | `feat!` or `BREAKING CHANGE` | major |
 | `docs`, `chore`, `ci`, `test`, `refactor`, `style` | none |
 
-A release happens when a PR merges to `main`. The `release` job runs semantic-release, which writes `package.json`, `CHANGELOG.md`, a GitHub release, and a `chore(release)` commit. That commit is marked `[skip ci]`. The same workflow then builds a staging APK and a staging IPA and sends them to Firebase App Distribution (`staging-testers`). Skip the iOS job from a manual run with the `skip_ios` input.
+One workflow on `main` reads the changed files and runs only the matching release lines. Each line has its own semantic-release, tag, and version file. A release commit is `chore(release): <tag> [skip ci]`.
 
-The marketing version is `package.json` `"version"`. The build number is `git rev-list --count HEAD` in CI (`BUILD_NUMBER`). Do not edit either by hand. Android reads the version from the repo-root `package.json`. iOS `Info.plist` already uses `$(MARKETING_VERSION)` and `$(CURRENT_PROJECT_VERSION)`; Fastlane `set_version` fills those at the start of each iOS lane. Sentry's release name is `<application id>@<version>+<build>`.
+| Line | Tag | Version file | When |
+|---|---|---|---|
+| Mobile | `v1.2.3` | `apps/mobile/package.json` | `apps/mobile`, `apps/web`, `apps/storybook`, `apps/storybook-web`, `packages` |
+| BFF | `bff-v1.2.3` | `apps/bff/package.json` | `apps/bff`, `.dockerignore` |
+| Root (`@ds/source`) | `source-v1.2.3` | `package.json` | repo-root files and `packages` |
 
-Production is manual. Actions → Production build → enter the tag (`v1.3.0` must match `package.json`). The job builds a signed Android AAB and an iOS App Store IPA and uploads them as artifacts for 5 days. It does not upload to Google Play or App Store Connect yet.
+`packages` releases both the catalog and the app. A BFF-only change does not bump the app. The first BFF and root tags start at `1.0.0`. The mobile line continues the existing `v*` tags.
+
+When the mobile line publishes a version, the same workflow builds a staging APK and a staging IPA and sends them to Firebase App Distribution (`staging-testers`). A manual run can choose `mobile`, `bff`, `root`, or `all`. Choosing mobile or all still builds staging. Skip the iOS job with `skip_ios`.
+
+When the BFF line runs, it publishes `ghcr.io/<owner>/<repo>/bff` tagged `main` and the git sha, plus `bff-vX.Y.Z` when a version was created. The container reads `PORT` (or `BFF_PORT`, default 4000) and requires `JWT_SECRET` when `NODE_ENV=production`. `GET /health` returns `{ "status": "ok" }`. Users live in memory; the seeded account is `demo@example.com` / `demo`.
+
+The build number is `git rev-list --count HEAD` in CI (`BUILD_NUMBER`). Do not edit versions or build numbers by hand. Android and Fastlane read `apps/mobile/package.json`. iOS `Info.plist` uses `$(MARKETING_VERSION)` and `$(CURRENT_PROJECT_VERSION)`; Fastlane `set_version` fills those at the start of each iOS lane. Sentry's release name is `<application id>@<version>+<build>`.
+
+Production is manual. Actions → Production build → enter the mobile tag (`v1.3.0` must match `apps/mobile/package.json`). The job builds a signed Android AAB and an iOS App Store IPA and uploads them as artifacts for 5 days. It does not upload to Google Play or App Store Connect yet.
 
 Dry run, no tags and no publish: `npm run release:dry`.
 
-Commit ve PR başlıkları conventional commit'tir. Squash-merge açık olduğu için semantic-release PR başlığını okur. `main`'e merge bir sürüm üretir; aynı workflow staging APK ve IPA'yı Firebase App Distribution'a yollar. Marketing sürüm `package.json`, build numarası CI'da `git rev-list --count HEAD`. İkisini elle değiştirmeyin. Production yalnızca elle: Actions → Production build, tag `package.json` ile aynı olmalı. `npm run release:dry` etiket basmadan dener.
+Commit ve PR başlıkları conventional commit'tir. Squash-merge açık olduğu için semantic-release PR başlığını okur. `main`'deki workflow değişen dosyalara göre üç hattan birini veya birkaçını çalıştırır: mobil `v*`, BFF `bff-v*`, ana proje `source-v*`. `packages` hem katalog hem uygulama sürümünü artırır. Yalnızca BFF değişince mobil sürüm artmaz. Mobil sürüm basılınca staging APK ve IPA Firebase App Distribution'a gider. Elle çalıştırmada `mobile`, `bff`, `root` veya `all` seçilir; mobil veya all staging paket çıkarır. BFF hattı `ghcr.io/<owner>/<repo>/bff` imajını `main` ve git sha ile, sürüm oluştuysa `bff-vX.Y.Z` ile yayınlar. Konteyner `PORT` (veya `BFF_PORT`, varsayılan 4000) okur; `NODE_ENV=production` iken `JWT_SECRET` zorunludur. `GET /health` `{ "status": "ok" }` döner. Kullanıcılar bellektedir; seed hesap `demo@example.com` / `demo`. Build numarası CI'da `git rev-list --count HEAD`. Sürüm dosyalarını elle değiştirmeyin. Production yalnızca elle: Actions → Production build, tag `apps/mobile/package.json` ile aynı olmalı. `npm run release:dry` etiket basmadan üç hattı da dener.
 
 ## Conventions / Kurallar
 

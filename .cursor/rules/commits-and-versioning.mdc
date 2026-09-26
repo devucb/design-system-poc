@@ -9,4 +9,6 @@ Write commit messages and pull request titles as conventional commits. Squash-me
 
 Types: `feat`, `fix`, `perf`, `refactor`, `docs`, `chore`, `ci`, `test`. `feat` is a minor release. `fix` and `perf` are patch. A `!` after the type, or a `BREAKING CHANGE` footer, is a major release. `docs`, `chore`, `ci`, `test`, `refactor`, and `style` do not release.
 
-Never edit the version by hand. Do not change `package.json` `"version"`, `CHANGELOG.md`, Android `versionName` / `versionCode`, or iOS `MARKETING_VERSION` / `CURRENT_PROJECT_VERSION`. semantic-release writes the marketing version. CI sets the build number from `git rev-list --count HEAD`.
+Three semantic-release lines share one workflow. `RELEASE_LINE` selects the config: `mobile` (`v*`, `apps/mobile/package.json`), `bff` (`bff-v*`, `apps/bff/package.json`), or `root` (`source-v*`, repo-root `package.json`). The path list is `scripts/release-lines.cjs`. `packages/` releases root and mobile. `apps/bff/` and `.dockerignore` release only the BFF. Web and Storybook share the mobile line.
+
+Never edit a version by hand. Do not change the version in `package.json`, `apps/mobile/package.json`, or `apps/bff/package.json`, their changelogs, Android `versionName` / `versionCode`, or iOS `MARKETING_VERSION` / `CURRENT_PROJECT_VERSION`. semantic-release writes those versions. CI sets the build number from `git rev-list --count HEAD`.
