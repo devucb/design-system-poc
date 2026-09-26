@@ -39,7 +39,7 @@ function App(props: {detoxSplashMs?: string}) {
   if (Number.isFinite(splashMs) && splashMs > 0) {
     setSplashDurationMs(splashMs);
   }
-
+  //build
   return (
     <GestureHandlerRootView style={styles.root}>
       <SafeAreaProvider initialMetrics={initialWindowMetrics}>

@@ -282,9 +282,61 @@ jobs:
       - name: Deploy on Render
         env:
           RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
         run: |
-          if [ -z "$RENDER_DEPLOY_HOOK" ]; then
-            echo "RENDER_DEPLOY_HOOK secret is missing."
+          if [ -z "$RENDER_DEPLOY_HOOK" ] || [ -z "$RENDER_API_KEY" ]; then
+            echo "RENDER_DEPLOY_HOOK and RENDER_API_KEY secrets are required."
             exit 1
           fi
-          curl -fsS -X POST "$RENDER_DEPLOY_HOOK"
+          service_id=$(printf '%s' "$RENDER_DEPLOY_HOOK" | sed -n 's#.*/deploy/\([^/?]*\).*#\1#p')
+          if [ -z "$service_id" ]; then
+            echo "Could not read the Render service id from RENDER_DEPLOY_HOOK."
+            exit 1
+          fi
+          http_code=$(curl -sS -o /tmp/render-deploy.json -w '%{http_code}' -X POST "$RENDER_DEPLOY_HOOK")
+          case "$http_code" in
+            200|201|202) ;;
+            *)
+              echo "Render deploy hook returned HTTP $http_code."
+              exit 1
+              ;;
+          esac
+          deploy_id=$(jq -r '.deploy.id // empty' /tmp/render-deploy.json)
+          if [ -z "$deploy_id" ]; then
+            echo "Render queued the deploy without an id (HTTP $http_code)."
+            exit 1
+          fi
+          echo "Render deploy ${deploy_id} on ${service_id}"
+          for _ in $(seq 1 40); do
+            status=$(curl -fsS -H "Authorization: Bearer $RENDER_API_KEY" \
+              "https://api.render.com/v1/services/${service_id}/deploys/${deploy_id}" \
+              | jq -r '.status // "unknown"')
+            echo "Render status: ${status}"
+            case "$status" in
+              live)
+                exit 0
+                ;;
+              build_failed|update_failed|canceled|deactivated|pre_deploy_failed)
+                service=$(curl -fsS -H "Authorization: Bearer $RENDER_API_KEY" \
+                  "https://api.render.com/v1/services/${service_id}")
+                echo "Render deploy failed: ${status}"
+                echo "$service" | jq -r '.dashboardUrl // empty'
+                owner_id=$(printf '%s' "$service" | jq -r '.ownerId // empty')
+                if [ -n "$owner_id" ]; then
+                  curl -fsS -H "Authorization: Bearer $RENDER_API_KEY" \
+                    --get \
+                    --data-urlencode "ownerId=${owner_id}" \
+                    --data-urlencode "resource=${service_id}" \
+                    --data-urlencode "type=build" \
+                    --data-urlencode "direction=backward" \
+                    --data-urlencode "limit=80" \
+                    "https://api.render.com/v1/logs" \
+                    | jq -r '.logs | reverse | .[].message'
+                fi
+                exit 1
+                ;;
+            esac
+            sleep 30
+          done
+          echo "Timed out waiting for Render deploy ${deploy_id}."
+          exit 1
