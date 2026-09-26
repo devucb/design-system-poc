@@ -2,13 +2,11 @@ default_platform(:android)
 
 require "json"
 
-# fastlane/ sits in apps/mobile, so the workspace root is three levels up.
-REPO_ROOT = File.expand_path("../../..", __dir__)
 STAGING_BUNDLE_ID = "com.designsystem.app.staging"
 PROD_BUNDLE_ID = "com.designsystem.app"
 
 def marketing_version
-  JSON.parse(File.read(File.join(REPO_ROOT, "package.json"))).fetch("version")
+  JSON.parse(File.read(File.expand_path("../package.json", __dir__))).fetch("version")
 end
 
 def build_number

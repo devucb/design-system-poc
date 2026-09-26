@@ -38,9 +38,9 @@ jobs:
 
       - name: Tag matches package.json
         run: |
-          expected="v$(node -p "require('./package.json').version")"
+          expected="v$(node -p "require('./apps/mobile/package.json').version")"
           if [ "$expected" != "${{ inputs.tag }}" ]; then
-            echo "Tag does not match package.json version ($expected)."
+            echo "Tag does not match apps/mobile/package.json version ($expected)."
             exit 1
           fi
 

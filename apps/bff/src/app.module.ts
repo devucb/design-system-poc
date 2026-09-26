@@ -7,19 +7,26 @@ import { AuthModule } from './modules/auth/auth.module';
 import { HealthModule } from './modules/health/health.module';
 import { UserModule } from './modules/user/user.module';
 
+const production = process.env.NODE_ENV === 'production';
+const jwtSecret =
+  process.env.JWT_SECRET ?? (production ? undefined : 'dev-only-jwt-secret');
+if (!jwtSecret) {
+  throw new Error('JWT_SECRET is required when NODE_ENV is production');
+}
+
 @Module({
   imports: [
     JwtModule.register({
       global: true,
-      secret: process.env.JWT_SECRET ?? 'dev-only-jwt-secret',
+      secret: jwtSecret,
       signOptions: { expiresIn: '7d' },
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: join(__dirname, '..', 'schema.gql'),
+      autoSchemaFile: production ? true : join(__dirname, '..', 'schema.gql'),
       sortSchema: true,
       path: '/graphql',
-      graphiql: true,
+      graphiql: !production,
     }),
     HealthModule,
     UserModule,

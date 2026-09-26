@@ -34,8 +34,8 @@
     "e2e:ios:build": "nx run storybook:e2e:ios:build",
     "e2e:mobile:ios": "nx run mobile:e2e:ios",
     "e2e:mobile:ios:build": "nx run mobile:e2e:ios:build",
-    "release": "semantic-release",
-    "release:dry": "semantic-release --dry-run --no-ci",
+    "release": "RELEASE_LINE=root semantic-release",
+    "release:dry": "RELEASE_LINE=root semantic-release --dry-run --no-ci && RELEASE_LINE=mobile semantic-release --dry-run --no-ci && RELEASE_LINE=bff semantic-release --dry-run --no-ci",
     "prepare": "husky"
   },
   "devDependencies": {

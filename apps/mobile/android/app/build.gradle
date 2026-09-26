@@ -78,9 +78,9 @@ def releaseKeyAlias = System.getenv("KEY_ALIAS")
 def releaseKeyPassword = System.getenv("KEY_PASSWORD")
 def hasReleaseKeystore = keystorePassword && releaseKeyAlias && releaseKeyPassword
 
-// Workspace root package.json (semantic-release). This module is
-// apps/mobile/android/app, so the repo root is four levels up.
-def marketingVersion = new groovy.json.JsonSlurper().parse(file("../../../../package.json")).version
+// Mobile semantic-release writes apps/mobile/package.json. This module is
+// apps/mobile/android/app, so that file is three levels up.
+def marketingVersion = new groovy.json.JsonSlurper().parse(file("../../../package.json")).version
 def buildNumberEnv = System.getenv("BUILD_NUMBER")
 def resolvedVersionCode = buildNumberEnv?.isInteger() ? buildNumberEnv.toInteger() : 1
 
