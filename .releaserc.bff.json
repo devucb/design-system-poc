@@ -1,0 +1,45 @@
+{
+  "branches": ["main"],
+  "tagFormat": "bff-v${version}",
+  "plugins": [
+    ["./scripts/release-lines.cjs", {"line": "bff"}],
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        "preset": "conventionalcommits",
+        "releaseRules": [
+          {"breaking": true, "release": "major"},
+          {"type": "feat", "release": "minor"},
+          {"type": "fix", "release": "patch"},
+          {"type": "perf", "release": "patch"},
+          {"type": "docs", "release": false},
+          {"type": "chore", "release": false},
+          {"type": "ci", "release": false},
+          {"type": "test", "release": false},
+          {"type": "refactor", "release": false},
+          {"type": "style", "release": false}
+        ]
+      }
+    ],
+    [
+      "@semantic-release/release-notes-generator",
+      {"preset": "conventionalcommits"}
+    ],
+    [
+      "@semantic-release/changelog",
+      {"changelogFile": "apps/bff/CHANGELOG.md"}
+    ],
+    [
+      "@semantic-release/npm",
+      {"npmPublish": false, "pkgRoot": "apps/bff"}
+    ],
+    [
+      "@semantic-release/git",
+      {
+        "assets": ["apps/bff/package.json", "apps/bff/CHANGELOG.md", "package-lock.json"],
+        "message": "chore(release): ${nextRelease.gitTag} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ],
+    "@semantic-release/github"
+  ]
+}
