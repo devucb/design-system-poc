@@ -49,7 +49,7 @@ npm run typecheck
 
 Snapshots cover catalog components in `packages/ui` (portable Storybook stories) and every screen. Providers and native modules are mocked in `apps/mobile/src/test/setup.ts`.
 
-Web catalog Storybook tests (Vitest + Playwright Chromium, a11y, coverage, Chromatic visual tests) live in `apps/storybook-web`. They do not run on-device. Local visual tests: sign in from the Visual Tests panel. CI visual tests: `.github/workflows/chromatic.yml` — add repo secret `CHROMATIC_PROJECT_TOKEN` (Chromatic → Manage → Configure). Storybook Publish is still last.
+Web catalog Storybook tests (Vitest + Playwright Chromium, a11y, coverage, Chromatic visual tests) live in `apps/storybook-web`. They do not run on-device. Local visual tests: sign in from the Visual Tests panel. CI visual tests: the Visual tests job in `.github/workflows/pull-request.yml` — add repo secret `CHROMATIC_PROJECT_TOKEN` (Chromatic → Manage → Configure). Storybook Publish is still last.
 
 Web Storybook testleri (`apps/storybook-web`) cihazda çalışmaz. Lokal görsel test: Visual Tests panelinden giriş. CI: `CHROMATIC_PROJECT_TOKEN` GitHub secret. Publish hâlâ sonda.
 
